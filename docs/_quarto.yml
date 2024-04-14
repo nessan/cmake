@@ -1,0 +1,112 @@
+# Metadata for this documentation project.
+# See https://quarto.orgcontent/reference/projects/websites.html
+project:
+    type: website
+    output-dir: _site
+
+format:
+    html:
+        toc: true
+        toc-expand: true
+        code-copy: true
+        code-overflow: scroll
+        grid:
+            sidebar-width: 250px
+            body-width: 800px
+            margin-width: 250px
+            gutter-width: 1.5em
+        theme:
+            - cosmo
+            - assets/css/theme.scss
+
+website:
+    title: "CMake Modules Library"
+    image: "assets/images/logo.jpg"
+    favicon: "assets/images/logo.jpg"
+    open-graph: true
+    twitter-card: true
+    site-url: "https://nessan.github.io/cmake"
+    repo-url: "https://github.com/nessan/cmake"
+    repo-subdir: docs
+    issue-url: "https://github.com/nessan/cmake/issues/new/choose"
+    repo-actions: [edit, issue]
+    reader-mode: true
+    page-navigation: true
+    bread-crumbs: false
+    back-to-top-navigation: true
+    page-footer:
+        left: |
+            Copyright (c) Nessan Fitzmaurice
+        center: |
+            Modules are available under the MIT License
+        right:
+            - icon: twitter
+              href: "https://twitter.com/nezzan"
+              aria-label: Twitter Account
+            - icon: github
+              href: "https://github.com/nessan/cmake"
+              aria-label: Gitlab Repo
+
+    navbar:
+        background: dark
+        logo: "assets/images/logo.jpg"
+        logo-alt: "The cmake library logo"
+        title: modules
+        search: true
+        pinned: true
+        collapse-below: lg
+        left:
+            - text: "Home"
+              file: content/index.qmd
+            - text: "Hygiene"
+              file: content/disable_in_source_builds.qmd
+            - text: "Warnings"
+              file: content/compiler_init.qmd
+            - text: "Small Executables"
+              file: content/add_executables.qmd
+            - text: "Archives"
+              file: content/add_archive.qmd
+            - text: "FetchContent"
+              file: content/fetch_content.qmd
+            - text: "Systematize"
+              file: content/systematize.qmd
+            - text: "More"
+              menu:
+                  - text: "Report a Bug"
+                    icon: "bug"
+                    href: "https://github.com/nessan/cmake/issues"
+                  - text: "Ask a Question"
+                    icon: "chat-right-text"
+                    href: "https://github.com/nessan/cmake/discussions"
+        tools:
+            - icon: twitter
+              href: "https://twitter.com/nezzan"
+              text: Twitter Account
+            - icon: github
+              href: "https://github.com/nessan/cmake"
+              text: GitLab repo
+
+    sidebar:
+        style: floating
+        type: light
+        background: light
+        align: left
+        collapse-level: 2
+        contents:
+            - text: "Overview"
+              file: content/index.qmd
+            - text: "Build Hygiene"
+              file: content/disable_in_source_builds.qmd
+            - text: "Picky Compiler"
+              file: content/compiler_init.qmd
+            - text: "Small Executables"
+              file: content/add_executables.qmd
+            - text: "Archive Targets"
+              file: content/add_archive.qmd
+            - text: "FetchContent"
+              file: content/fetch_content.qmd
+            - text: "External Headers"
+              file: content/systematize.qmd
+editor:
+    markdown:
+        canonical: true
