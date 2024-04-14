@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://nessan.github.io/cmake/index.html</loc>
+    <lastmod>2024-04-14T16:49:01.764Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nessan.github.io/cmake/content/add_executables.html</loc>
+    <lastmod>2024-04-14T16:49:01.763Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nessan.github.io/cmake/content/fetch_content.html</loc>
+    <lastmod>2024-04-14T16:49:01.764Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nessan.github.io/cmake/content/systematize.html</loc>
+    <lastmod>2024-04-14T16:49:01.764Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nessan.github.io/cmake/content/disable_in_source_builds.html</loc>
+    <lastmod>2024-04-14T16:49:01.763Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nessan.github.io/cmake/content/compiler_init.html</loc>
+    <lastmod>2024-04-14T16:49:01.763Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nessan.github.io/cmake/content/add_archive.html</loc>
+    <lastmod>2024-04-14T16:49:01.763Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nessan.github.io/cmake/content/index.html</loc>
+    <lastmod>2024-04-14T16:49:01.764Z</lastmod>
+  </url>
+</urlset>
