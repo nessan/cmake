@@ -32,6 +32,7 @@ website:
     page-navigation: true
     bread-crumbs: false
     back-to-top-navigation: true
+    google-analytics: G-RDX9014Z7X
     page-footer:
         left: |
             Copyright (c) Nessan Fitzmaurice
