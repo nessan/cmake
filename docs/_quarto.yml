@@ -24,7 +24,6 @@ website:
     image: "assets/images/logo.jpg"
     favicon: "assets/images/logo.jpg"
     open-graph: true
-    twitter-card: true
     site-url: "https://nessan.github.io/cmake"
     repo-url: "https://github.com/nessan/cmake"
     repo-subdir: docs
@@ -39,9 +38,6 @@ website:
         center: |
             Modules are available under the MIT License
         right:
-            - icon: twitter
-              href: "https://twitter.com/nezzan"
-              aria-label: Twitter Account
             - icon: github
               href: "https://github.com/nessan/cmake"
               aria-label: GitHub Repo
