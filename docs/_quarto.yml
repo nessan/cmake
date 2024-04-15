@@ -29,7 +29,7 @@ website:
     repo-url: "https://github.com/nessan/cmake"
     repo-subdir: docs
     issue-url: "https://github.com/nessan/cmake/issues/new/choose"
-    repo-actions: [edit, issue]
+    repo-actions: [source, edit, issue]
     reader-mode: true
     page-navigation: true
     bread-crumbs: false
