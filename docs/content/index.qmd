@@ -38,8 +38,9 @@ disable_in_source_builds()
 
 ## Documentation
 
+The project's source code repository is [here][repo]. \
 You can read the project's documentation [here][docs]. \
-We used the static website generator [Quarto] to construct the site.
+We used the static website generator [Quarto] to construct the documentation site.
 
 ### Contact
 

@@ -31,8 +31,9 @@ disable_in_source_builds()
 
 ## Documentation
 
-You can read the project's documentation [here](https://nessan.github.io/cmake/). \
-We used the static website generator [Quarto](https://quarto.org) to construct the site.
+The project's source code repository is [here](https://github.com/nessan/cmake). \
+You can read the project's documentation [here](https://nessan.github.io/cmake). \
+We used the static website generator [Quarto](https://quarto.org) to construct the documentation site.
 
 ### Contact
 
