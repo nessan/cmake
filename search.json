@@ -32,7 +32,7 @@
     "href": "index.html#documentation",
     "title": "CMake Modules",
     "section": "Documentation",
-    "text": "Documentation\nYou can read the project’s documentation here.\nWe used the static website generator Quarto to construct the site.\n\nContact\nYou can contact me by email here.\n\n\nCopyright and License\nCopyright (c) 2022-present Nessan Fitzmaurice.\nYou can use this software under the MIT license."
+    "text": "Documentation\nThe project’s source code repository is here.\nYou can read the project’s documentation here.\nWe used the static website generator Quarto to construct the documentation site.\n\nContact\nYou can contact me by email here.\n\n\nCopyright and License\nCopyright (c) 2022-present Nessan Fitzmaurice.\nYou can use this software under the MIT license."
   },
   {
     "objectID": "content/add_executables.html",
@@ -347,7 +347,7 @@
     "href": "content/index.html#documentation",
     "title": "CMake Modules",
     "section": "Documentation",
-    "text": "Documentation\nYou can read the project’s documentation here.\nWe used the static website generator Quarto to construct the site.\n\nContact\nYou can contact me by email here.\n\n\nCopyright and License\nCopyright (c) 2022-present Nessan Fitzmaurice.\nYou can use this software under the MIT license.",
+    "text": "Documentation\nThe project’s source code repository is here.\nYou can read the project’s documentation here.\nWe used the static website generator Quarto to construct the documentation site.\n\nContact\nYou can contact me by email here.\n\n\nCopyright and License\nCopyright (c) 2022-present Nessan Fitzmaurice.\nYou can use this software under the MIT license.",
     "crumbs": [
       "Home",
       "Overview"
