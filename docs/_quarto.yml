@@ -71,6 +71,9 @@ website:
               file: content/systematize.qmd
             - text: "More"
               menu:
+                  - text: "Project Repo"
+                    icon: "github"
+                    href: "https://github.com/nessan/cmake"
                   - text: "Report a Bug"
                     icon: "bug"
                     href: "https://github.com/nessan/cmake/issues"
