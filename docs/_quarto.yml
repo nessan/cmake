@@ -39,6 +39,7 @@ website:
             Modules are available under the MIT License
         right:
             - icon: github
+              text: "Project Repo"
               href: "https://github.com/nessan/cmake"
               aria-label: GitHub Repo
 
