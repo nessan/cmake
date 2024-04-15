@@ -45,7 +45,7 @@ website:
               aria-label: Twitter Account
             - icon: github
               href: "https://github.com/nessan/cmake"
-              aria-label: Gitlab Repo
+              aria-label: GitHub Repo
 
     navbar:
         background: dark
@@ -84,7 +84,7 @@ website:
               text: Twitter Account
             - icon: github
               href: "https://github.com/nessan/cmake"
-              text: GitLab repo
+              text: GitHub repo
 
     sidebar:
         style: floating
