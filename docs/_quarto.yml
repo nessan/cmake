@@ -29,8 +29,7 @@ website:
     repo-url: "https://github.com/nessan/cmake"
     repo-subdir: docs
     issue-url: "https://github.com/nessan/cmake/issues/new/choose"
-    repo-actions: [source, edit, issue]
-    reader-mode: true
+    repo-actions: [edit, issue]
     page-navigation: true
     bread-crumbs: false
     back-to-top-navigation: true
@@ -79,9 +78,6 @@ website:
                     icon: "chat-right-text"
                     href: "https://github.com/nessan/cmake/discussions"
         tools:
-            - icon: twitter
-              href: "https://twitter.com/nezzan"
-              text: Twitter Account
             - icon: github
               href: "https://github.com/nessan/cmake"
               text: GitHub repo
