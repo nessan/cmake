@@ -1,0 +1,4 @@
+- source: project
+  quarto-pub:
+    - id: b34119b2-689e-4782-ad9e-908665d301e9
+      url: 'https://nessan.quarto.pub/cmake'

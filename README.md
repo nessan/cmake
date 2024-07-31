@@ -4,6 +4,8 @@ This repository has some modules for the [`CMake`](https://cmake.org/documentati
 
 ## Available Modules
 
+The modules are in the top-level subdirectory called `modules`.
+
 | Module                     | Description                                                                                                                        |
 | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | `disable_in_source_builds` | A classic that enforces best practice and prevents any in-source builds.                                                           |
@@ -31,7 +33,6 @@ disable_in_source_builds()
 
 ## Documentation
 
-The project's source code repository is [here](https://github.com/nessan/cmake). \
 You can read the project's documentation [here](https://nessan.github.io/cmake). \
 We used the static website generator [Quarto](https://quarto.org) to construct the documentation site.
 

@@ -16,9 +16,9 @@
 [`CPM`]:                        https://github.com/cpm-cmake/CPM.cmake
 
 <!-- Formatted links to all the module pages -->
-[`add_archive`]:                /content/add_archive.qmd
-[`add_executables`]:            /content/add_executables.qmd
-[`compiler_init`]:              /content/compiler_init.qmd
-[`disable_in_source_builds`]:   /content/disable_in_source_builds.qmd
-[`fetch_content`]:              /content/fetch_content.qmd
-[`systematize`]:                /content/systematize.qmd
+[`add_archive`]:                /pages/add_archive.qmd
+[`add_executables`]:            /pages/add_executables.qmd
+[`compiler_init`]:              /pages/compiler_init.qmd
+[`disable_in_source_builds`]:   /pages/disable_in_source_builds.qmd
+[`fetch_content`]:              /pages/fetch_content.qmd
+[`systematize`]:                /pages/systematize.qmd
