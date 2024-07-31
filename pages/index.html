@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.4.555">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>CMake Modules Library - Suppress Warnings from External Headers</title>
+<title>CMake Modules Library - CMake Modules</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -63,7 +63,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../content/fetch_content.html" rel="prev">
+<link href="../pages/disable_in_source_builds.html" rel="next">
 <link href="../assets/images/logo.jpg" rel="icon" type="image/jpeg">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -112,10 +112,14 @@ gtag('config', 'G-RDX9014Z7X', { 'anonymize_ip': true});
 </script>
 
 
-<meta property="og:title" content="CMake Modules Library - Suppress Warnings from External Headers">
+<meta property="og:title" content="CMake Modules Library - CMake Modules">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://nessan.github.io/cmake/content/assets/images/logo.jpg">
+<meta property="og:image" content="https://nessan.github.io/cmake/pages/assets/images/logo.jpg">
 <meta property="og:site_name" content="CMake Modules Library">
+<meta name="twitter:title" content="CMake Modules Library - CMake Modules">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://nessan.github.io/cmake/pages/assets/images/logo.jpg">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -139,31 +143,31 @@ gtag('config', 'G-RDX9014Z7X', { 'anonymize_ip': true});
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../content/index.html" aria-current="page"> 
+    <a class="nav-link active" href="../pages/index.html" aria-current="page"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../content/disable_in_source_builds.html"> 
+    <a class="nav-link" href="../pages/disable_in_source_builds.html"> 
 <span class="menu-text">Hygiene</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../content/compiler_init.html"> 
+    <a class="nav-link" href="../pages/compiler_init.html"> 
 <span class="menu-text">Warnings</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../content/add_executables.html"> 
+    <a class="nav-link" href="../pages/add_executables.html"> 
 <span class="menu-text">Small Executables</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../content/add_archive.html"> 
+    <a class="nav-link" href="../pages/add_archive.html"> 
 <span class="menu-text">Archives</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../content/fetch_content.html"> 
+    <a class="nav-link" href="../pages/fetch_content.html"> 
 <span class="menu-text">FetchContent</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../content/systematize.html"> 
+    <a class="nav-link" href="../pages/systematize.html"> 
 <span class="menu-text">Systematize</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -192,6 +196,7 @@ gtag('config', 'G-RDX9014Z7X', { 'anonymize_ip': true});
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
     <a href="https://github.com/nessan/cmake" title="GitHub repo" class="quarto-navigation-tool px-1" aria-label="GitHub repo"><i class="bi bi-github"></i></a>
+    <a href="https://twitter.com/nezzan" title="" class="quarto-navigation-tool px-1" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -201,7 +206,7 @@ gtag('config', 'G-RDX9014Z7X', { 'anonymize_ip': true});
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">Suppress Warnings from External Headers</h1>
+          <h1 class="quarto-secondary-nav-title">CMake Modules</h1>
         </a>     
     </div>
   </nav>
@@ -214,43 +219,43 @@ gtag('config', 'G-RDX9014Z7X', { 'anonymize_ip': true});
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../pages/index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/disable_in_source_builds.html" class="sidebar-item-text sidebar-link">
+  <a href="../pages/disable_in_source_builds.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Build Hygiene</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/compiler_init.html" class="sidebar-item-text sidebar-link">
+  <a href="../pages/compiler_init.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Picky Compiler</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/add_executables.html" class="sidebar-item-text sidebar-link">
+  <a href="../pages/add_executables.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Small Executables</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/add_archive.html" class="sidebar-item-text sidebar-link">
+  <a href="../pages/add_archive.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Archive Targets</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/fetch_content.html" class="sidebar-item-text sidebar-link">
+  <a href="../pages/fetch_content.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">FetchContent</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/systematize.html" class="sidebar-item-text sidebar-link active">
+  <a href="../pages/systematize.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">External Headers</span></a>
   </div>
 </li>
@@ -264,17 +269,23 @@ gtag('config', 'G-RDX9014Z7X', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#available-modules" id="toc-available-modules" class="nav-link active" data-scroll-target="#available-modules">Available Modules</a></li>
+  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a></li>
   <li><a href="#usage" id="toc-usage" class="nav-link" data-scroll-target="#usage">Usage</a></li>
+  <li><a href="#documentation" id="toc-documentation" class="nav-link" data-scroll-target="#documentation">Documentation</a>
+  <ul class="collapse">
+  <li><a href="#contact" id="toc-contact" class="nav-link" data-scroll-target="#contact">Contact</a></li>
+  <li><a href="#copyright-and-license" id="toc-copyright-and-license" class="nav-link" data-scroll-target="#copyright-and-license">Copyright and License</a></li>
+  </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/nessan/cmake/edit/main/docs/content/systematize.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nessan/cmake/issues/new/choose" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/nessan/cmake/edit/main/docs/pages/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nessan/cmake/issues/new/choose" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Suppress Warnings from External Headers</h1>
+<h1 class="title d-none d-lg-block">CMake Modules</h1>
 </div>
 
 
@@ -295,24 +306,78 @@ gtag('config', 'G-RDX9014Z7X', { 'anonymize_ip': true});
 <!--Links to software tools, etc., that we reference -->
 <!-- Formatted links to pages for external items -->
 <!-- Formatted links to all the module pages -->
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>This module lets you treat a library’s header files as system headers.</p>
-<p>We want to compile our code with a maximal set of compiler checks. We also treat all compiler warnings as errors, which forces us to clean our code early in the development cycle. See <a href="../content/compiler_init.html"><code>compiler_init</code></a>.</p>
-<p>However, by default, these rather strict compiler flags also get applied to any imported header files from an external library. When we import a library into our project, we often get inundated with compiler warnings from that library’s header files.</p>
-<p>Of course, a lot of the warnings are not that important and often concern deprecated features that the library uses so it can support ancient compilers and so on. Ideally, all of these get cleaned up by conditional compilation. However, that is probably not immediately practical for a library you do not own. This leaves you with screen after screen of errors hiding the warnings you are interested in.</p>
-<p>One way to suppress all those warnings is to treat the imported header files as “system” header files. Compilers generally ignore warnings issued from system headers.</p>
+<p>This repository has some modules for the <a href="https://cmake.org/documentation"><code>CMake</code></a> build system. Each module is entirely stand-alone, so you can copy any file of interest directly into your project and use it like any other CMake <a href="https://cmake.org/cmake/help/book/mastering-cmake/chapter/Modules.html">module</a>.</p>
+<section id="available-modules" class="level2">
+<h2 class="anchored" data-anchor-id="available-modules">Available Modules</h2>
+<div class="table-responsive">
+<table class="table-bordered table-striped table-hover caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 60%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Module</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="../pages/disable_in_source_builds.html"><code>disable_in_source_builds</code></a></td>
+<td>Enforces build hygiene.</td>
+</tr>
+<tr class="even">
+<td><a href="../pages/compiler_init.html"><code>compiler_init</code></a></td>
+<td>Initializes the compiler to be picky.</td>
+</tr>
+<tr class="odd">
+<td><a href="../pages/add_executables.html"><code>add_executables</code></a></td>
+<td>Adds targets for many small one-file executables.</td>
+</tr>
+<tr class="even">
+<td><a href="../pages/add_archive.html"><code>add_archive</code></a></td>
+<td>Adds a target to create an archive of some files/directories.</td>
+</tr>
+<tr class="odd">
+<td><a href="../pages/fetch_content.html"><code>fetch_content</code></a></td>
+<td>A small wrapper around the standard <a href="https://cmake.org/cmake/help/latest/module/FetchContent.html"><code>FetchContent</code></a> module.</td>
+</tr>
+<tr class="even">
+<td><a href="../pages/systematize.html"><code>systematize</code></a></td>
+<td>Treat the header files for an imported library as “system” includes.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="installation" class="level2">
+<h2 class="anchored" data-anchor-id="installation">Installation</h2>
+<p>The modules are stand-alone, so you can copy any file of interest directly into your project and use it like any other <code>CMake</code> module. By convention, one puts modules like these in a top-level subdirectory called <code>cmake</code>.</p>
 </section>
 <section id="usage" class="level2">
 <h2 class="anchored" data-anchor-id="usage">Usage</h2>
-<p>Suppose <code>ExternalLib</code> is the external library we import into our project. <code>ExternalLib</code> has some potentially problematic header files in its include directory.</p>
-<p>Assuming the <code>systematize.cmake</code> file is in a top-level <code>cmake</code> directory, you might invoke it as follows:</p>
+<p>However you get the modules, you use them by letting <code>CMake</code> know where they are, including the particular ones of interest, and invoking the corresponding function.</p>
+<p>For example, if you have copied the files into a top-level subdirectory <code>cmake</code>, then your <code>CMakeLists.txt</code> file might include some lines like:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode cmake code-with-copy"><code class="sourceCode cmake"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">list</span>(<span class="ot">APPEND</span> <span class="dv">CMAKE_MODULE_PATH</span> <span class="st">"</span><span class="dv">${CMAKE_SOURCE_DIR}</span><span class="st">/cmake"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">include</span>(systematize)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">systematize</span>(ExternalLib)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The <code>systematize</code> function adds the CMake <code>SYSTEM</code> attribute to the <code>ExternalLib</code>, including its header files, and compilers will then stop issuing warnings from that location.</p>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">include</span>(disable_in_source_builds)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">disable_in_source_builds</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="documentation" class="level2">
+<h2 class="anchored" data-anchor-id="documentation">Documentation</h2>
+<p>The project’s source code repository is <a href="https://github.com/nessan/cmake">here</a>.<br>
+You can read the project’s documentation <a href="https://nessan.github.io/cmake">here</a>.<br>
+We used the static website generator <a href="https://quarto.org">Quarto</a> to construct the documentation site.</p>
+<section id="contact" class="level3">
+<h3 class="anchored" data-anchor-id="contact">Contact</h3>
+<p>You can contact me by email <a href="mailto:nzznfitz+gh@icloud.com">here</a>.</p>
+</section>
+<section id="copyright-and-license" class="level3">
+<h3 class="anchored" data-anchor-id="copyright-and-license">Copyright and License</h3>
+<p>Copyright (c) 2022-present Nessan Fitzmaurice.<br>
+You can use this software under the <a href="https://opensource.org/license/mit">MIT license</a>.</p>
 
 
+</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -727,11 +792,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../content/fetch_content.html" class="pagination-link" aria-label="FetchContent">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">FetchContent</span>
-      </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../pages/disable_in_source_builds.html" class="pagination-link" aria-label="Build Hygiene">
+        <span class="nav-page-text">Build Hygiene</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -742,13 +807,20 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
 <p>Modules are available under the MIT License</p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/nessan/cmake/edit/main/docs/content/systematize.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nessan/cmake/issues/new/choose" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/nessan/cmake/edit/main/docs/pages/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nessan/cmake/issues/new/choose" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
-    <li class="nav-item">
+    <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/nessan/cmake">
-<p>Project Repo</p>
-</a>
+      <i class="bi bi-github" role="img" aria-label="GitHub Repo">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/nezzan">
+      <i class="bi bi-twitter" role="img" aria-label="Twitter">
+</i> 
+    </a>
   </li>  
 </ul>
     </div>

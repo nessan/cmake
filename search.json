@@ -1,5 +1,214 @@
 [
   {
+    "objectID": "pages/index.html",
+    "href": "pages/index.html",
+    "title": "CMake Modules",
+    "section": "",
+    "text": "This repository has some modules for the CMake build system. Each module is entirely stand-alone, so you can copy any file of interest directly into your project and use it like any other CMake module.",
+    "crumbs": [
+      "Home",
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "pages/index.html#available-modules",
+    "href": "pages/index.html#available-modules",
+    "title": "CMake Modules",
+    "section": "Available Modules",
+    "text": "Available Modules\n\n\n\n\n\n\n\n\nModule\nDescription\n\n\n\n\ndisable_in_source_builds\nEnforces build hygiene.\n\n\ncompiler_init\nInitializes the compiler to be picky.\n\n\nadd_executables\nAdds targets for many small one-file executables.\n\n\nadd_archive\nAdds a target to create an archive of some files/directories.\n\n\nfetch_content\nA small wrapper around the standard FetchContent module.\n\n\nsystematize\nTreat the header files for an imported library as “system” includes.",
+    "crumbs": [
+      "Home",
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "pages/index.html#installation",
+    "href": "pages/index.html#installation",
+    "title": "CMake Modules",
+    "section": "Installation",
+    "text": "Installation\nThe modules are stand-alone, so you can copy any file of interest directly into your project and use it like any other CMake module. By convention, one puts modules like these in a top-level subdirectory called cmake.",
+    "crumbs": [
+      "Home",
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "pages/index.html#usage",
+    "href": "pages/index.html#usage",
+    "title": "CMake Modules",
+    "section": "Usage",
+    "text": "Usage\nHowever you get the modules, you use them by letting CMake know where they are, including the particular ones of interest, and invoking the corresponding function.\nFor example, if you have copied the files into a top-level subdirectory cmake, then your CMakeLists.txt file might include some lines like:\nlist(APPEND CMAKE_MODULE_PATH \"${CMAKE_SOURCE_DIR}/cmake\")\ninclude(disable_in_source_builds)\ndisable_in_source_builds()",
+    "crumbs": [
+      "Home",
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "pages/index.html#documentation",
+    "href": "pages/index.html#documentation",
+    "title": "CMake Modules",
+    "section": "Documentation",
+    "text": "Documentation\nThe project’s source code repository is here.\nYou can read the project’s documentation here.\nWe used the static website generator Quarto to construct the documentation site.\n\nContact\nYou can contact me by email here.\n\n\nCopyright and License\nCopyright (c) 2022-present Nessan Fitzmaurice.\nYou can use this software under the MIT license.",
+    "crumbs": [
+      "Home",
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "pages/add_archive.html",
+    "href": "pages/add_archive.html",
+    "title": "Create Archives",
+    "section": "",
+    "text": "add_archive(...) adds a build target that packages a set of files/directories into a compressed archive.\nThe function takes some optional keyword arguments and all the others should be the files and directories you want placed in the archive.",
+    "crumbs": [
+      "Home",
+      "Archive Targets"
+    ]
+  },
+  {
+    "objectID": "pages/add_archive.html#introduction",
+    "href": "pages/add_archive.html#introduction",
+    "title": "Create Archives",
+    "section": "",
+    "text": "add_archive(...) adds a build target that packages a set of files/directories into a compressed archive.\nThe function takes some optional keyword arguments and all the others should be the files and directories you want placed in the archive.",
+    "crumbs": [
+      "Home",
+      "Archive Targets"
+    ]
+  },
+  {
+    "objectID": "pages/add_archive.html#usage",
+    "href": "pages/add_archive.html#usage",
+    "title": "Create Archives",
+    "section": "Usage",
+    "text": "Usage\nAssuming the module file is in the top-level cmake directory, you might use the function as follows in your CMakeLists.txt file\nlist(APPEND CMAKE_MODULE_PATH \"${CMAKE_SOURCE_DIR}/cmake\")\ninclude(add_archive)\nadd_archive(LICENSE CMakeLists.txt source include)\nThis call will add a new target to the build called archive using all default values for the various parameters.\nInvoking that target will create a zipped archive file containing the arguments that were passed to the function. In this case, presumably, LICENSE and CMakeLists.txt are files while source and include are directories.\n\nKeyword Arguments\n\n\n\n\n\n\n\n\n\nArgument\nDescription\nDefault Value\n\n\n\n\nVERBOSE\nSet to get some informative messages on configuration.\nOFF\n\n\nARCHIVE_BASENAME\nThe basename for the archive.\n${PROJECT_NAME}\n\n\nARCHIVE_FORMAT\nThe format for the archive.\nzip\n\n\nARCHIVE_TARGET\nThe name of the build target that creates the archive.\narchive\n\n\nARCHIVE_LOCATION\nWhere the archive is output to.\n${CMAKE_CURRENT_BINARY_DIR}\n\n\n\n\n\n\n\n\n\n\nAvailable compression algorithms\n\n\n\nThe archive uses the CMake native tar command. Browsing the CMake source code, that command seems to support zip, 7zip, gnutar,pax, and paxr as possible compression formats.",
+    "crumbs": [
+      "Home",
+      "Archive Targets"
+    ]
+  },
+  {
+    "objectID": "pages/add_archive.html#rationale",
+    "href": "pages/add_archive.html#rationale",
+    "title": "Create Archives",
+    "section": "Rationale",
+    "text": "Rationale\nOne use of this function is creating a minimal archive of a library’s essential content. Rather than downloading the library’s entire repo, a downstream-consuming project might be able to use the minimal archive version efficiently.\nThe CMake module FetchContent is an excellent tool that allows one to pull a library from a remote repo into a project that will use it. For example:\ninclude(FetchContent)\nFetchContent_Declare(ExternalLib URL https:://github.com/.../ExternalLib.git)\nFetchContent_MakeAvailable(ExternalLib)\nAs long as ExternalLib has a reasonable CMakeLists.txt file, FetchContent takes care of cloning its repo, building the library as needed, pointing your #include \"ExternalLib/whatever.h at the right spot, and of course linking in the library as needed.\nAll done automatically and out of sight! What’s not to like?\nThe only slight issue is that, when used this way, FetchContent... downloads the entire ExternalLib repo, which probably contains useless content regarding your project. There will typically be lots of test files, example programs, ExternalLib documentation, etc., which is good if you are developing ExternalLib but generally not relevant for the downstream application!\nFor that reason, FetchContent supports another mode of operation where it can download just enough from the ExternalLib repo to make it operational for the library’s consumer. This mode of operation relies on the creator of ExternalLib providing such a minimal archive in the first place. Assuming it’s available, then a consumer of the library can proceed as follows:\ninclude(FetchContent)\nFetchContent_Declare(ExternalLib URL https://github.com/.../ExternalLib.zip)\nFetchContent_MakeAvailable(ExternalLib)\nIn this mode, FetchContent downloads the zip archive, unpacks it into your project’s build directory, and, assuming there is enough information in the archive, will still take care of all the needed point the compiler to the correct location for the headers, linking the library, etc.\nAgain, this is all done automatically and out of sight, but with the advantage that the download is typically a fraction of the entire ExternalLib repo.\nThe natural question is, what exactly should that ExternalLib.zip archive contain for this to work?\nYou must include the library’s CMakeLists.txt file as that is how FetchContent will understand the library structure (where to find the library headers, how to build it, etc.). Of course, you should include the headers for the library and the sources needed to build it. Finally, you will typically include the LICENSE file, which is not an operational necessity but generally a tiny file and best kept.",
+    "crumbs": [
+      "Home",
+      "Archive Targets"
+    ]
+  },
+  {
+    "objectID": "pages/add_archive.html#notes",
+    "href": "pages/add_archive.html#notes",
+    "title": "Create Archives",
+    "section": "Notes",
+    "text": "Notes\n\nOnce you have set up the archive target, you probably want to add a job to your CI/CD pipeline that invokes cmake to build it automatically. The pipeline should run whenever you push a new release tag into the repo. How you do that depends on which cloud repository you use.\nCMake comes with CPack that can do something similar.",
+    "crumbs": [
+      "Home",
+      "Archive Targets"
+    ]
+  },
+  {
+    "objectID": "pages/compiler_init.html",
+    "href": "pages/compiler_init.html",
+    "title": "Initialize the Compiler to be Picky",
+    "section": "",
+    "text": "A call to compiler_init(target) sets some commonly used compiler flags for the target.\n\n\n\n\n\n\nThe aim is to detect poor code early\n\n\n\nMost of the flags this module sets control the warnings compilers will issue for “bad” code.",
+    "crumbs": [
+      "Home",
+      "Picky Compiler"
+    ]
+  },
+  {
+    "objectID": "pages/compiler_init.html#introduction",
+    "href": "pages/compiler_init.html#introduction",
+    "title": "Initialize the Compiler to be Picky",
+    "section": "",
+    "text": "A call to compiler_init(target) sets some commonly used compiler flags for the target.\n\n\n\n\n\n\nThe aim is to detect poor code early\n\n\n\nMost of the flags this module sets control the warnings compilers will issue for “bad” code.",
+    "crumbs": [
+      "Home",
+      "Picky Compiler"
+    ]
+  },
+  {
+    "objectID": "pages/compiler_init.html#rationale",
+    "href": "pages/compiler_init.html#rationale",
+    "title": "Initialize the Compiler to be Picky",
+    "section": "Rationale",
+    "text": "Rationale\nWe want the compiler to issue warnings early and often during development. This function adds appropriate compiler flags to achieve just that.\nValid flags vary by compiler. The ones supplied here cover the gcc, clang, and Microsoft and come from various sources on the net.\nWe also add the /Zc:preprocessor flag for the Microsoft compiler. This flag forces it to use its newer cross-platform compatible preprocessor.",
+    "crumbs": [
+      "Home",
+      "Picky Compiler"
+    ]
+  },
+  {
+    "objectID": "pages/compiler_init.html#usage",
+    "href": "pages/compiler_init.html#usage",
+    "title": "Initialize the Compiler to be Picky",
+    "section": "Usage",
+    "text": "Usage\nWhen building my_app, you might add lines to the CMakeLists.txt file along the lines:\nlist(APPEND CMAKE_MODULE_PATH \"${CMAKE_SOURCE_DIR}/cmake\")\ninclude(compiler_init)\ncompiler_init(my_app)\nNow, builds of my_app will get all sorts of warnings issued if the compiler sees anything that looks dubious. In fact, by default, warnings are treated as errors, and compilation will stop. This deliberate choice forces you to fix warnings early in the development cycle. You can turn off that behavior by setting a variable — see below.",
+    "crumbs": [
+      "Home",
+      "Picky Compiler"
+    ]
+  },
+  {
+    "objectID": "pages/compiler_init.html#variables",
+    "href": "pages/compiler_init.html#variables",
+    "title": "Initialize the Compiler to be Picky",
+    "section": "Variables",
+    "text": "Variables\nThere are a couple of variables that change the behavior of this function.\n\nIf WARNINGS_ARE_PICKY is set to a “truthy” value, then the compiler is set up to be particularly picky. For gcc and clang, the -Wall and -Wextra flags are set, while the /W4 flag is set for Microsoft.\nIf WARNINGS_ARE_ERRORS is set to a “truthy” value, the compiler will treat warnings as errors and abort compilation when any are encountered.\n\n\n\n\n\n\n\nPicky by default!\n\n\n\nBoth variables are ON by default! It is better to be picky from the start and be forced to deal with the warnings as they arise rather than skip them to be dealt with later. Getting a clean bill of health from several compilers is undoubtedly a sign of a healthy code base. Of course, it is also good to run your code through a linter of some sort.",
+    "crumbs": [
+      "Home",
+      "Picky Compiler"
+    ]
+  },
+  {
+    "objectID": "pages/compiler_init.html#other-notes",
+    "href": "pages/compiler_init.html#other-notes",
+    "title": "Initialize the Compiler to be Picky",
+    "section": "Other Notes:",
+    "text": "Other Notes:\n\nThis function works on a single target basis. Any compiler warning flags that are set for the target do not propagate. The exception is for INTERFACE targets –– those are typically header-only libraries. If you call compiler_init for one of those, the warning flags propagate to any code that uses the library.\nCalling the function also sets the CMAKE_EXPORT_COMPILE_COMMANDS and CMAKE_COLOR_DIAGNOSTICS variables to ON. The former gets CMake to export all the compile commands to the file compile_commands.json in your build folder–editors like VSCode will use that file to locate header information properly and so on. The latter instructs CMake to ask the compiler to add color to its output.\nThis function will issue an error if it does not recognize the compiler you are using,\n\n\n\n\n\n\n\nMicrosoft\n\n\n\nWe rarely use the Microsoft compiler, so the flags for that compiler may not be up-to-date or complete.",
+    "crumbs": [
+      "Home",
+      "Picky Compiler"
+    ]
+  },
+  {
+    "objectID": "pages/disable_in_source_builds.html",
+    "href": "pages/disable_in_source_builds.html",
+    "title": "Build Hygiene",
+    "section": "",
+    "text": "A call to disable_in_source_builds() prohibits invocations of cmake in a project directory.",
+    "crumbs": [
+      "Home",
+      "Build Hygiene"
+    ]
+  },
+  {
+    "objectID": "pages/disable_in_source_builds.html#introduction",
+    "href": "pages/disable_in_source_builds.html#introduction",
+    "title": "Build Hygiene",
+    "section": "",
+    "text": "A call to disable_in_source_builds() prohibits invocations of cmake in a project directory.",
+    "crumbs": [
+      "Home",
+      "Build Hygiene"
+    ]
+  },
+  {
+    "objectID": "pages/disable_in_source_builds.html#rationale",
+    "href": "pages/disable_in_source_builds.html#rationale",
+    "title": "Build Hygiene",
+    "section": "Rationale",
+    "text": "Rationale\nThe best practice for build systems is to put all build artifacts into a separate build directory — typically located at the root of the project tree.\nThat way, the source tree is kept clean of object files, executables, library archives, etc., making it easy to clean everything up by deleting the entire build directory. It is also easy to create a rule for your source code control system that prevents checking all the ephemeral build artifacts into the code repository.\nThis concept is now considered fundamental, and newer IDE’s and build systems enforce it by writ and never pollute the main source tree with any build artifacts.\nOf course, CMake is happy to work with out-of-source builds, and indeed, every guide you will ever read tells you on page 1 how to make sure to do just that. However, unfortunately, CMake also allows in-source builds where the object files, etc. can end up in the same spots as the source files.\nAll modern CMake projects try to prevent that inadvertent use. This function does just that and is typically invoked very early in the CMakeLists.txt file. For example, very early on, it might have a few lines like:\nlist(APPEND CMAKE_MODULE_PATH \"${CMAKE_SOURCE_DIR}/cmake\")\ninclude(disable_in_source_builds)\ndisable_in_source_builds()\nNow, if you try to invoke cmake and are not building out-of-source, the system will exit with a polite error message telling you exactly how to correct the situation.",
+    "crumbs": [
+      "Home",
+      "Build Hygiene"
+    ]
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "CMake Modules",
@@ -35,85 +244,8 @@
     "text": "Documentation\nThe project’s source code repository is here.\nYou can read the project’s documentation here.\nWe used the static website generator Quarto to construct the documentation site.\n\nContact\nYou can contact me by email here.\n\n\nCopyright and License\nCopyright (c) 2022-present Nessan Fitzmaurice.\nYou can use this software under the MIT license."
   },
   {
-    "objectID": "content/add_executables.html",
-    "href": "content/add_executables.html",
-    "title": "Add Targets for lots of Small Executables",
-    "section": "",
-    "text": "add_executables(directory,...) walks through a directory of source files and adds targets to build each one, and each group, into executables.\nTo use this function, we expect each file in the directory to compile into a separate executable.\nFor example, if the directory has a file Foo.cpp the function will create a target Foo that compiles Foo.cpp and links the object file to any trailing arguments which generally are libraries.\nMoreover, if the source files in the directory follow a simple sequential naming scheme, the function will also add some convenience targets that build whole groups of executables at once. For example, suppose the project looks like:\nproject/\n├── .git\n├── CMakeLists.txt\n├── cmake\n│   └── add_executables.cmake\n├── examples\n│   ├── Bar01.cpp\n│   ├── Bar02.cpp\n│   ├── Bar03.cpp\n│   ├── Foo01.cpp\n│   └── Foo02.cpp\n└── ...\nand your CMakeLists.txt file has some lines like\nlist(APPEND CMAKE_MODULE_PATH \"${CMAKE_SOURCE_DIR}/cmake\")\ninclude(add_executables)\nadd_executables(examples ...)\nthen CMake will create individual targets for Bar01, Bar02, Bar03, Foo01, and Foo02. It will also create a convenience target Bar that expands to Bar01, Bar02, and Bar03, another convenience target Foo that expands to Foo01, and Foo02, and finally, a target examples that expands to all the individual targets.",
-    "crumbs": [
-      "Home",
-      "Small Executables"
-    ]
-  },
-  {
-    "objectID": "content/add_executables.html#introduction",
-    "href": "content/add_executables.html#introduction",
-    "title": "Add Targets for lots of Small Executables",
-    "section": "",
-    "text": "add_executables(directory,...) walks through a directory of source files and adds targets to build each one, and each group, into executables.\nTo use this function, we expect each file in the directory to compile into a separate executable.\nFor example, if the directory has a file Foo.cpp the function will create a target Foo that compiles Foo.cpp and links the object file to any trailing arguments which generally are libraries.\nMoreover, if the source files in the directory follow a simple sequential naming scheme, the function will also add some convenience targets that build whole groups of executables at once. For example, suppose the project looks like:\nproject/\n├── .git\n├── CMakeLists.txt\n├── cmake\n│   └── add_executables.cmake\n├── examples\n│   ├── Bar01.cpp\n│   ├── Bar02.cpp\n│   ├── Bar03.cpp\n│   ├── Foo01.cpp\n│   └── Foo02.cpp\n└── ...\nand your CMakeLists.txt file has some lines like\nlist(APPEND CMAKE_MODULE_PATH \"${CMAKE_SOURCE_DIR}/cmake\")\ninclude(add_executables)\nadd_executables(examples ...)\nthen CMake will create individual targets for Bar01, Bar02, Bar03, Foo01, and Foo02. It will also create a convenience target Bar that expands to Bar01, Bar02, and Bar03, another convenience target Foo that expands to Foo01, and Foo02, and finally, a target examples that expands to all the individual targets.",
-    "crumbs": [
-      "Home",
-      "Small Executables"
-    ]
-  },
-  {
-    "objectID": "content/add_executables.html#rationale",
-    "href": "content/add_executables.html#rationale",
-    "title": "Add Targets for lots of Small Executables",
-    "section": "Rationale",
-    "text": "Rationale\nLibrary developers will often develop an extensive set of simple command line tools that exercise various features of their library either as demos or as tests. This is how one ends up with a directory like the examples above.\nThe add_executables function makes it easy to grow that collection of executables without worrying about adding them to some CMakeLists.txt file. It also makes building some of those executables as a group easy.",
-    "crumbs": [
-      "Home",
-      "Small Executables"
-    ]
-  },
-  {
-    "objectID": "content/add_executables.html#notes",
-    "href": "content/add_executables.html#notes",
-    "title": "Add Targets for lots of Small Executables",
-    "section": "Notes",
-    "text": "Notes\n\nThe first argument to add_executables(...) must be a directory. All other trailing arguments are assumed to be libraries to which the executables must be linked.\nThe created targets have the CMake EXCLUDE_FROM_ALL attribute set.\nThe module also defines other helper functions that might be useful elsewhere.\nCurrently, the module only handles .cpp and .c files in the passed directory argument.",
-    "crumbs": [
-      "Home",
-      "Small Executables"
-    ]
-  },
-  {
-    "objectID": "content/fetch_content.html",
-    "href": "content/fetch_content.html",
-    "title": "A Wrapper Around FetchContent",
-    "section": "",
-    "text": "fetch_content(...) is a wrapper around the CMake module FetchContent\nThat standard module is a tool to pull a code base or library from a remote repo into a project that will use it.\nFor example, the consumer of a remote library might have some lines in their CMakeLists.txt file like these:\ninclude(FetchContent)\nFetchContent_Declare(ExternalLib URL https:://github.com/.../ExternalLib.git ...)\nFetchContent_MakeAvailable(ExternalLib)\nThose trailing …’s in that first FetchContent_Declare call represent the many options that function can have. Some of those options should be the default. Adding those defaults is the primary purpose of fetch_content.",
-    "crumbs": [
-      "Home",
-      "FetchContent"
-    ]
-  },
-  {
-    "objectID": "content/fetch_content.html#introduction",
-    "href": "content/fetch_content.html#introduction",
-    "title": "A Wrapper Around FetchContent",
-    "section": "",
-    "text": "fetch_content(...) is a wrapper around the CMake module FetchContent\nThat standard module is a tool to pull a code base or library from a remote repo into a project that will use it.\nFor example, the consumer of a remote library might have some lines in their CMakeLists.txt file like these:\ninclude(FetchContent)\nFetchContent_Declare(ExternalLib URL https:://github.com/.../ExternalLib.git ...)\nFetchContent_MakeAvailable(ExternalLib)\nThose trailing …’s in that first FetchContent_Declare call represent the many options that function can have. Some of those options should be the default. Adding those defaults is the primary purpose of fetch_content.",
-    "crumbs": [
-      "Home",
-      "FetchContent"
-    ]
-  },
-  {
-    "objectID": "content/fetch_content.html#usage",
-    "href": "content/fetch_content.html#usage",
-    "title": "A Wrapper Around FetchContent",
-    "section": "Usage",
-    "text": "Usage\nAssuming the fetch_content.cmake file is located in a top-level cmake directory in the CMakeLists.txt file, you might use the function as follows:\nlist(APPEND CMAKE_MODULE_PATH \"${CMAKE_SOURCE_DIR}/cmake\")\ninclude(fetch_content)\nfetch_content(ExternalLib URL https:://github.com/.../ExternalLib.git ...)\nThis will essentially do the FetchContent_Declare and FetchContent_MakeAvailable calls above but will also add several recommended options to those calls. In particular, it will tell FetchContent to check to see if the package is already available on the system, avoiding cloning any repo. It will also ensure that any repo clones done will be as shallow as possible to speed things up.\n\n\n\n\n\n\nLiable to change\n\n\n\nThis module will probably change in the future as FetchContent develops.\n\n\n\n\n\n\n\n\nCPM\n\n\n\nThe CMake Package Manager CPM is a much fuller featured wrapper around FetchContent.",
-    "crumbs": [
-      "Home",
-      "FetchContent"
-    ]
-  },
-  {
-    "objectID": "content/systematize.html",
-    "href": "content/systematize.html",
+    "objectID": "pages/systematize.html",
+    "href": "pages/systematize.html",
     "title": "Suppress Warnings from External Headers",
     "section": "",
     "text": "This module lets you treat a library’s header files as system headers.\nWe want to compile our code with a maximal set of compiler checks. We also treat all compiler warnings as errors, which forces us to clean our code early in the development cycle. See compiler_init.\nHowever, by default, these rather strict compiler flags also get applied to any imported header files from an external library. When we import a library into our project, we often get inundated with compiler warnings from that library’s header files.\nOf course, a lot of the warnings are not that important and often concern deprecated features that the library uses so it can support ancient compilers and so on. Ideally, all of these get cleaned up by conditional compilation. However, that is probably not immediately practical for a library you do not own. This leaves you with screen after screen of errors hiding the warnings you are interested in.\nOne way to suppress all those warnings is to treat the imported header files as “system” header files. Compilers generally ignore warnings issued from system headers.",
@@ -123,8 +255,8 @@
     ]
   },
   {
-    "objectID": "content/systematize.html#introduction",
-    "href": "content/systematize.html#introduction",
+    "objectID": "pages/systematize.html#introduction",
+    "href": "pages/systematize.html#introduction",
     "title": "Suppress Warnings from External Headers",
     "section": "",
     "text": "This module lets you treat a library’s header files as system headers.\nWe want to compile our code with a maximal set of compiler checks. We also treat all compiler warnings as errors, which forces us to clean our code early in the development cycle. See compiler_init.\nHowever, by default, these rather strict compiler flags also get applied to any imported header files from an external library. When we import a library into our project, we often get inundated with compiler warnings from that library’s header files.\nOf course, a lot of the warnings are not that important and often concern deprecated features that the library uses so it can support ancient compilers and so on. Ideally, all of these get cleaned up by conditional compilation. However, that is probably not immediately practical for a library you do not own. This leaves you with screen after screen of errors hiding the warnings you are interested in.\nOne way to suppress all those warnings is to treat the imported header files as “system” header files. Compilers generally ignore warnings issued from system headers.",
@@ -134,8 +266,8 @@
     ]
   },
   {
-    "objectID": "content/systematize.html#usage",
-    "href": "content/systematize.html#usage",
+    "objectID": "pages/systematize.html#usage",
+    "href": "pages/systematize.html#usage",
     "title": "Suppress Warnings from External Headers",
     "section": "Usage",
     "text": "Usage\nSuppose ExternalLib is the external library we import into our project. ExternalLib has some potentially problematic header files in its include directory.\nAssuming the systematize.cmake file is in a top-level cmake directory, you might invoke it as follows:\nlist(APPEND CMAKE_MODULE_PATH \"${CMAKE_SOURCE_DIR}/cmake\")\ninclude(systematize)\nsystematize(ExternalLib)\nThe systematize function adds the CMake SYSTEM attribute to the ExternalLib, including its header files, and compilers will then stop issuing warnings from that location.",
@@ -145,212 +277,80 @@
     ]
   },
   {
-    "objectID": "content/disable_in_source_builds.html",
-    "href": "content/disable_in_source_builds.html",
-    "title": "Build Hygiene",
+    "objectID": "pages/fetch_content.html",
+    "href": "pages/fetch_content.html",
+    "title": "A Wrapper Around FetchContent",
     "section": "",
-    "text": "A call to disable_in_source_builds() prohibits invocations of cmake in a project directory.",
+    "text": "fetch_content(...) is a wrapper around the CMake module FetchContent\nThat standard module is a tool to pull a code base or library from a remote repo into a project that will use it.\nFor example, the consumer of a remote library might have some lines in their CMakeLists.txt file like these:\ninclude(FetchContent)\nFetchContent_Declare(ExternalLib URL https:://github.com/.../ExternalLib.git ...)\nFetchContent_MakeAvailable(ExternalLib)\nThose trailing …’s in that first FetchContent_Declare call represent the many options that function can have. Some of those options should be the default. Adding those defaults is the primary purpose of fetch_content.",
     "crumbs": [
       "Home",
-      "Build Hygiene"
+      "FetchContent"
     ]
   },
   {
-    "objectID": "content/disable_in_source_builds.html#introduction",
-    "href": "content/disable_in_source_builds.html#introduction",
-    "title": "Build Hygiene",
+    "objectID": "pages/fetch_content.html#introduction",
+    "href": "pages/fetch_content.html#introduction",
+    "title": "A Wrapper Around FetchContent",
     "section": "",
-    "text": "A call to disable_in_source_builds() prohibits invocations of cmake in a project directory.",
+    "text": "fetch_content(...) is a wrapper around the CMake module FetchContent\nThat standard module is a tool to pull a code base or library from a remote repo into a project that will use it.\nFor example, the consumer of a remote library might have some lines in their CMakeLists.txt file like these:\ninclude(FetchContent)\nFetchContent_Declare(ExternalLib URL https:://github.com/.../ExternalLib.git ...)\nFetchContent_MakeAvailable(ExternalLib)\nThose trailing …’s in that first FetchContent_Declare call represent the many options that function can have. Some of those options should be the default. Adding those defaults is the primary purpose of fetch_content.",
     "crumbs": [
       "Home",
-      "Build Hygiene"
+      "FetchContent"
     ]
   },
   {
-    "objectID": "content/disable_in_source_builds.html#rationale",
-    "href": "content/disable_in_source_builds.html#rationale",
-    "title": "Build Hygiene",
-    "section": "Rationale",
-    "text": "Rationale\nThe best practice for build systems is to put all build artifacts into a separate build directory — typically located at the root of the project tree.\nThat way, the source tree is kept clean of object files, executables, library archives, etc., making it easy to clean everything up by deleting the entire build directory. It is also easy to create a rule for your source code control system that prevents checking all the ephemeral build artifacts into the code repository.\nThis concept is now considered fundamental, and newer IDE’s and build systems enforce it by writ and never pollute the main source tree with any build artifacts.\nOf course, CMake is happy to work with out-of-source builds, and indeed, every guide you will ever read tells you on page 1 how to make sure to do just that. However, unfortunately, CMake also allows in-source builds where the object files, etc. can end up in the same spots as the source files.\nAll modern CMake projects try to prevent that inadvertent use. This function does just that and is typically invoked very early in the CMakeLists.txt file. For example, very early on, it might have a few lines like:\nlist(APPEND CMAKE_MODULE_PATH \"${CMAKE_SOURCE_DIR}/cmake\")\ninclude(disable_in_source_builds)\ndisable_in_source_builds()\nNow, if you try to invoke cmake and are not building out-of-source, the system will exit with a polite error message telling you exactly how to correct the situation.",
-    "crumbs": [
-      "Home",
-      "Build Hygiene"
-    ]
-  },
-  {
-    "objectID": "content/compiler_init.html",
-    "href": "content/compiler_init.html",
-    "title": "Initialize the Compiler to be Picky",
-    "section": "",
-    "text": "A call to compiler_init(target) sets some commonly used compiler flags for the target.\n\n\n\n\n\n\nThe aim is to detect poor code early\n\n\n\nMost of the flags this module sets control the warnings compilers will issue for “bad” code.",
-    "crumbs": [
-      "Home",
-      "Picky Compiler"
-    ]
-  },
-  {
-    "objectID": "content/compiler_init.html#introduction",
-    "href": "content/compiler_init.html#introduction",
-    "title": "Initialize the Compiler to be Picky",
-    "section": "",
-    "text": "A call to compiler_init(target) sets some commonly used compiler flags for the target.\n\n\n\n\n\n\nThe aim is to detect poor code early\n\n\n\nMost of the flags this module sets control the warnings compilers will issue for “bad” code.",
-    "crumbs": [
-      "Home",
-      "Picky Compiler"
-    ]
-  },
-  {
-    "objectID": "content/compiler_init.html#rationale",
-    "href": "content/compiler_init.html#rationale",
-    "title": "Initialize the Compiler to be Picky",
-    "section": "Rationale",
-    "text": "Rationale\nWe want the compiler to issue warnings early and often during development. This function adds appropriate compiler flags to achieve just that.\nValid flags vary by compiler. The ones supplied here cover the gcc, clang, and Microsoft and come from various sources on the net.\nWe also add the /Zc:preprocessor flag for the Microsoft compiler. This flag forces it to use its newer cross-platform compatible preprocessor.",
-    "crumbs": [
-      "Home",
-      "Picky Compiler"
-    ]
-  },
-  {
-    "objectID": "content/compiler_init.html#usage",
-    "href": "content/compiler_init.html#usage",
-    "title": "Initialize the Compiler to be Picky",
+    "objectID": "pages/fetch_content.html#usage",
+    "href": "pages/fetch_content.html#usage",
+    "title": "A Wrapper Around FetchContent",
     "section": "Usage",
-    "text": "Usage\nWhen building my_app, you might add lines to the CMakeLists.txt file along the lines:\nlist(APPEND CMAKE_MODULE_PATH \"${CMAKE_SOURCE_DIR}/cmake\")\ninclude(compiler_init)\ncompiler_init(my_app)\nNow, builds of my_app will get all sorts of warnings issued if the compiler sees anything that looks dubious. In fact, by default, warnings are treated as errors, and compilation will stop. This deliberate choice forces you to fix warnings early in the development cycle. You can turn off that behavior by setting a variable — see below.",
+    "text": "Usage\nAssuming the fetch_content.cmake file is located in a top-level cmake directory in the CMakeLists.txt file, you might use the function as follows:\nlist(APPEND CMAKE_MODULE_PATH \"${CMAKE_SOURCE_DIR}/cmake\")\ninclude(fetch_content)\nfetch_content(ExternalLib URL https:://github.com/.../ExternalLib.git ...)\nThis will essentially do the FetchContent_Declare and FetchContent_MakeAvailable calls above but will also add several recommended options to those calls. In particular, it will tell FetchContent to check to see if the package is already available on the system, avoiding cloning any repo. It will also ensure that any repo clones done will be as shallow as possible to speed things up.\n\n\n\n\n\n\nLiable to change\n\n\n\nThis module will probably change in the future as FetchContent develops.\n\n\n\n\n\n\n\n\nCPM\n\n\n\nThe CMake Package Manager CPM is a much fuller featured wrapper around FetchContent.",
     "crumbs": [
       "Home",
-      "Picky Compiler"
+      "FetchContent"
     ]
   },
   {
-    "objectID": "content/compiler_init.html#variables",
-    "href": "content/compiler_init.html#variables",
-    "title": "Initialize the Compiler to be Picky",
-    "section": "Variables",
-    "text": "Variables\nThere are a couple of variables that change the behavior of this function.\n\nIf WARNINGS_ARE_PICKY is set to a “truthy” value, then the compiler is set up to be particularly picky. For gcc and clang, the -Wall and -Wextra flags are set, while the /W4 flag is set for Microsoft.\nIf WARNINGS_ARE_ERRORS is set to a “truthy” value, the compiler will treat warnings as errors and abort compilation when any are encountered.\n\n\n\n\n\n\n\nPicky by default!\n\n\n\nBoth variables are ON by default! It is better to be picky from the start and be forced to deal with the warnings as they arise rather than skip them to be dealt with later. Getting a clean bill of health from several compilers is undoubtedly a sign of a healthy code base. Of course, it is also good to run your code through a linter of some sort.",
-    "crumbs": [
-      "Home",
-      "Picky Compiler"
-    ]
-  },
-  {
-    "objectID": "content/compiler_init.html#other-notes",
-    "href": "content/compiler_init.html#other-notes",
-    "title": "Initialize the Compiler to be Picky",
-    "section": "Other Notes:",
-    "text": "Other Notes:\n\nThis function works on a single target basis. Any compiler warning flags that are set for the target do not propagate. The exception is for INTERFACE targets –– those are typically header-only libraries. If you call compiler_init for one of those, the warning flags propagate to any code that uses the library.\nCalling the function also sets the CMAKE_EXPORT_COMPILE_COMMANDS and CMAKE_COLOR_DIAGNOSTICS variables to ON. The former gets CMake to export all the compile commands to the file compile_commands.json in your build folder–editors like VSCode will use that file to locate header information properly and so on. The latter instructs CMake to ask the compiler to add color to its output.\nThis function will issue an error if it does not recognize the compiler you are using,\n\n\n\n\n\n\n\nMicrosoft\n\n\n\nWe rarely use the Microsoft compiler, so the flags for that compiler may not be up-to-date or complete.",
-    "crumbs": [
-      "Home",
-      "Picky Compiler"
-    ]
-  },
-  {
-    "objectID": "content/add_archive.html",
-    "href": "content/add_archive.html",
-    "title": "Create Archives",
+    "objectID": "pages/add_executables.html",
+    "href": "pages/add_executables.html",
+    "title": "Add Targets for lots of Small Executables",
     "section": "",
-    "text": "add_archive(...) adds a build target that packages a set of files/directories into a compressed archive.\nThe function takes some optional keyword arguments and all the others should be the files and directories you want placed in the archive.",
+    "text": "add_executables(directory,...) walks through a directory of source files and adds targets to build each one, and each group, into executables.\nTo use this function, we expect each file in the directory to compile into a separate executable.\nFor example, if the directory has a file Foo.cpp the function will create a target Foo that compiles Foo.cpp and links the object file to any trailing arguments which generally are libraries.\nMoreover, if the source files in the directory follow a simple sequential naming scheme, the function will also add some convenience targets that build whole groups of executables at once. For example, suppose the project looks like:\nproject/\n├── .git\n├── CMakeLists.txt\n├── cmake\n│   └── add_executables.cmake\n├── examples\n│   ├── Bar01.cpp\n│   ├── Bar02.cpp\n│   ├── Bar03.cpp\n│   ├── Foo01.cpp\n│   └── Foo02.cpp\n└── ...\nand your CMakeLists.txt file has some lines like\nlist(APPEND CMAKE_MODULE_PATH \"${CMAKE_SOURCE_DIR}/cmake\")\ninclude(add_executables)\nadd_executables(examples ...)\nthen CMake will create individual targets for Bar01, Bar02, Bar03, Foo01, and Foo02. It will also create a convenience target Bar that expands to Bar01, Bar02, and Bar03, another convenience target Foo that expands to Foo01, and Foo02, and finally, a target examples that expands to all the individual targets.",
     "crumbs": [
       "Home",
-      "Archive Targets"
+      "Small Executables"
     ]
   },
   {
-    "objectID": "content/add_archive.html#introduction",
-    "href": "content/add_archive.html#introduction",
-    "title": "Create Archives",
+    "objectID": "pages/add_executables.html#introduction",
+    "href": "pages/add_executables.html#introduction",
+    "title": "Add Targets for lots of Small Executables",
     "section": "",
-    "text": "add_archive(...) adds a build target that packages a set of files/directories into a compressed archive.\nThe function takes some optional keyword arguments and all the others should be the files and directories you want placed in the archive.",
+    "text": "add_executables(directory,...) walks through a directory of source files and adds targets to build each one, and each group, into executables.\nTo use this function, we expect each file in the directory to compile into a separate executable.\nFor example, if the directory has a file Foo.cpp the function will create a target Foo that compiles Foo.cpp and links the object file to any trailing arguments which generally are libraries.\nMoreover, if the source files in the directory follow a simple sequential naming scheme, the function will also add some convenience targets that build whole groups of executables at once. For example, suppose the project looks like:\nproject/\n├── .git\n├── CMakeLists.txt\n├── cmake\n│   └── add_executables.cmake\n├── examples\n│   ├── Bar01.cpp\n│   ├── Bar02.cpp\n│   ├── Bar03.cpp\n│   ├── Foo01.cpp\n│   └── Foo02.cpp\n└── ...\nand your CMakeLists.txt file has some lines like\nlist(APPEND CMAKE_MODULE_PATH \"${CMAKE_SOURCE_DIR}/cmake\")\ninclude(add_executables)\nadd_executables(examples ...)\nthen CMake will create individual targets for Bar01, Bar02, Bar03, Foo01, and Foo02. It will also create a convenience target Bar that expands to Bar01, Bar02, and Bar03, another convenience target Foo that expands to Foo01, and Foo02, and finally, a target examples that expands to all the individual targets.",
     "crumbs": [
       "Home",
-      "Archive Targets"
+      "Small Executables"
     ]
   },
   {
-    "objectID": "content/add_archive.html#usage",
-    "href": "content/add_archive.html#usage",
-    "title": "Create Archives",
-    "section": "Usage",
-    "text": "Usage\nAssuming the module file is in the top-level cmake directory, you might use the function as follows in your CMakeLists.txt file\nlist(APPEND CMAKE_MODULE_PATH \"${CMAKE_SOURCE_DIR}/cmake\")\ninclude(add_archive)\nadd_archive(LICENSE CMakeLists.txt source include)\nThis call will add a new target to the build called archive using all default values for the various parameters.\nInvoking that target will create a zipped archive file containing the arguments that were passed to the function. In this case, presumably, LICENSE and CMakeLists.txt are files while source and include are directories.\n\nKeyword Arguments\n\n\n\n\n\n\n\n\n\nArgument\nDescription\nDefault Value\n\n\n\n\nVERBOSE\nSet to get some informative messages on configuration.\nOFF\n\n\nARCHIVE_BASENAME\nThe basename for the archive.\n${PROJECT_NAME}\n\n\nARCHIVE_FORMAT\nThe format for the archive.\nzip\n\n\nARCHIVE_TARGET\nThe name of the build target that creates the archive.\narchive\n\n\nARCHIVE_LOCATION\nWhere the archive is output to.\n${CMAKE_CURRENT_BINARY_DIR}\n\n\n\n\n\n\n\n\n\n\nAvailable compression algorithms\n\n\n\nThe archive uses the CMake native tar command. Browsing the CMake source code, that command seems to support zip, 7zip, gnutar,pax, and paxr as possible compression formats.",
-    "crumbs": [
-      "Home",
-      "Archive Targets"
-    ]
-  },
-  {
-    "objectID": "content/add_archive.html#rationale",
-    "href": "content/add_archive.html#rationale",
-    "title": "Create Archives",
+    "objectID": "pages/add_executables.html#rationale",
+    "href": "pages/add_executables.html#rationale",
+    "title": "Add Targets for lots of Small Executables",
     "section": "Rationale",
-    "text": "Rationale\nOne use of this function is creating a minimal archive of a library’s essential content. Rather than downloading the library’s entire repo, a downstream-consuming project might be able to use the minimal archive version efficiently.\nThe CMake module FetchContent is an excellent tool that allows one to pull a library from a remote repo into a project that will use it. For example:\ninclude(FetchContent)\nFetchContent_Declare(ExternalLib URL https:://github.com/.../ExternalLib.git)\nFetchContent_MakeAvailable(ExternalLib)\nAs long as ExternalLib has a reasonable CMakeLists.txt file, FetchContent takes care of cloning its repo, building the library as needed, pointing your #include \"ExternalLib/whatever.h at the right spot, and of course linking in the library as needed.\nAll done automatically and out of sight! What’s not to like?\nThe only slight issue is that, when used this way, FetchContent... downloads the entire ExternalLib repo, which probably contains useless content regarding your project. There will typically be lots of test files, example programs, ExternalLib documentation, etc., which is good if you are developing ExternalLib but generally not relevant for the downstream application!\nFor that reason, FetchContent supports another mode of operation where it can download just enough from the ExternalLib repo to make it operational for the library’s consumer. This mode of operation relies on the creator of ExternalLib providing such a minimal archive in the first place. Assuming it’s available, then a consumer of the library can proceed as follows:\ninclude(FetchContent)\nFetchContent_Declare(ExternalLib URL https://github.com/.../ExternalLib.zip)\nFetchContent_MakeAvailable(ExternalLib)\nIn this mode, FetchContent downloads the zip archive, unpacks it into your project’s build directory, and, assuming there is enough information in the archive, will still take care of all the needed point the compiler to the correct location for the headers, linking the library, etc.\nAgain, this is all done automatically and out of sight, but with the advantage that the download is typically a fraction of the entire ExternalLib repo.\nThe natural question is, what exactly should that ExternalLib.zip archive contain for this to work?\nYou must include the library’s CMakeLists.txt file as that is how FetchContent will understand the library structure (where to find the library headers, how to build it, etc.). Of course, you should include the headers for the library and the sources needed to build it. Finally, you will typically include the LICENSE file, which is not an operational necessity but generally a tiny file and best kept.",
+    "text": "Rationale\nLibrary developers will often develop an extensive set of simple command line tools that exercise various features of their library either as demos or as tests. This is how one ends up with a directory like the examples above.\nThe add_executables function makes it easy to grow that collection of executables without worrying about adding them to some CMakeLists.txt file. It also makes building some of those executables as a group easy.",
     "crumbs": [
       "Home",
-      "Archive Targets"
+      "Small Executables"
     ]
   },
   {
-    "objectID": "content/add_archive.html#notes",
-    "href": "content/add_archive.html#notes",
-    "title": "Create Archives",
+    "objectID": "pages/add_executables.html#notes",
+    "href": "pages/add_executables.html#notes",
+    "title": "Add Targets for lots of Small Executables",
     "section": "Notes",
-    "text": "Notes\n\nOnce you have set up the archive target, you probably want to add a job to your CI/CD pipeline that invokes cmake to build it automatically. The pipeline should run whenever you push a new release tag into the repo. How you do that depends on which cloud repository you use.\nCMake comes with CPack that can do something similar.",
+    "text": "Notes\n\nThe first argument to add_executables(...) must be a directory. All other trailing arguments are assumed to be libraries to which the executables must be linked.\nThe created targets have the CMake EXCLUDE_FROM_ALL attribute set.\nThe module also defines other helper functions that might be useful elsewhere.\nCurrently, the module only handles .cpp and .c files in the passed directory argument.",
     "crumbs": [
       "Home",
-      "Archive Targets"
-    ]
-  },
-  {
-    "objectID": "content/index.html",
-    "href": "content/index.html",
-    "title": "CMake Modules",
-    "section": "",
-    "text": "This repository has some modules for the CMake build system. Each module is entirely stand-alone, so you can copy any file of interest directly into your project and use it like any other CMake module.",
-    "crumbs": [
-      "Home",
-      "Overview"
-    ]
-  },
-  {
-    "objectID": "content/index.html#available-modules",
-    "href": "content/index.html#available-modules",
-    "title": "CMake Modules",
-    "section": "Available Modules",
-    "text": "Available Modules\n\n\n\n\n\n\n\n\nModule\nDescription\n\n\n\n\ndisable_in_source_builds\nEnforces build hygiene.\n\n\ncompiler_init\nInitializes the compiler to be picky.\n\n\nadd_executables\nAdds targets for many small one-file executables.\n\n\nadd_archive\nAdds a target to create an archive of some files/directories.\n\n\nfetch_content\nA small wrapper around the standard FetchContent module.\n\n\nsystematize\nTreat the header files for an imported library as “system” includes.",
-    "crumbs": [
-      "Home",
-      "Overview"
-    ]
-  },
-  {
-    "objectID": "content/index.html#installation",
-    "href": "content/index.html#installation",
-    "title": "CMake Modules",
-    "section": "Installation",
-    "text": "Installation\nThe modules are stand-alone, so you can copy any file of interest directly into your project and use it like any other CMake module. By convention, one puts modules like these in a top-level subdirectory called cmake.",
-    "crumbs": [
-      "Home",
-      "Overview"
-    ]
-  },
-  {
-    "objectID": "content/index.html#usage",
-    "href": "content/index.html#usage",
-    "title": "CMake Modules",
-    "section": "Usage",
-    "text": "Usage\nHowever you get the modules, you use them by letting CMake know where they are, including the particular ones of interest, and invoking the corresponding function.\nFor example, if you have copied the files into a top-level subdirectory cmake, then your CMakeLists.txt file might include some lines like:\nlist(APPEND CMAKE_MODULE_PATH \"${CMAKE_SOURCE_DIR}/cmake\")\ninclude(disable_in_source_builds)\ndisable_in_source_builds()",
-    "crumbs": [
-      "Home",
-      "Overview"
-    ]
-  },
-  {
-    "objectID": "content/index.html#documentation",
-    "href": "content/index.html#documentation",
-    "title": "CMake Modules",
-    "section": "Documentation",
-    "text": "Documentation\nThe project’s source code repository is here.\nYou can read the project’s documentation here.\nWe used the static website generator Quarto to construct the documentation site.\n\nContact\nYou can contact me by email here.\n\n\nCopyright and License\nCopyright (c) 2022-present Nessan Fitzmaurice.\nYou can use this software under the MIT license.",
-    "crumbs": [
-      "Home",
-      "Overview"
+      "Small Executables"
     ]
   }
 ]

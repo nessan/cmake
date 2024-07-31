@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.4.555">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>CMake Modules Library - CMake Modules</title>
+<title>CMake Modules Library - Add Targets for lots of Small Executables</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -63,7 +63,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../content/disable_in_source_builds.html" rel="next">
+<link href="../pages/add_archive.html" rel="next">
+<link href="../pages/compiler_init.html" rel="prev">
 <link href="../assets/images/logo.jpg" rel="icon" type="image/jpeg">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -112,10 +113,14 @@ gtag('config', 'G-RDX9014Z7X', { 'anonymize_ip': true});
 </script>
 
 
-<meta property="og:title" content="CMake Modules Library - CMake Modules">
+<meta property="og:title" content="CMake Modules Library - Add Targets for lots of Small Executables">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://nessan.github.io/cmake/content/assets/images/logo.jpg">
+<meta property="og:image" content="https://nessan.github.io/cmake/pages/assets/images/logo.jpg">
 <meta property="og:site_name" content="CMake Modules Library">
+<meta name="twitter:title" content="CMake Modules Library - Add Targets for lots of Small Executables">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://nessan.github.io/cmake/pages/assets/images/logo.jpg">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -139,31 +144,31 @@ gtag('config', 'G-RDX9014Z7X', { 'anonymize_ip': true});
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../content/index.html" aria-current="page"> 
+    <a class="nav-link active" href="../pages/index.html" aria-current="page"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../content/disable_in_source_builds.html"> 
+    <a class="nav-link" href="../pages/disable_in_source_builds.html"> 
 <span class="menu-text">Hygiene</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../content/compiler_init.html"> 
+    <a class="nav-link" href="../pages/compiler_init.html"> 
 <span class="menu-text">Warnings</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../content/add_executables.html"> 
+    <a class="nav-link" href="../pages/add_executables.html"> 
 <span class="menu-text">Small Executables</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../content/add_archive.html"> 
+    <a class="nav-link" href="../pages/add_archive.html"> 
 <span class="menu-text">Archives</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../content/fetch_content.html"> 
+    <a class="nav-link" href="../pages/fetch_content.html"> 
 <span class="menu-text">FetchContent</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../content/systematize.html"> 
+    <a class="nav-link" href="../pages/systematize.html"> 
 <span class="menu-text">Systematize</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -192,6 +197,7 @@ gtag('config', 'G-RDX9014Z7X', { 'anonymize_ip': true});
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
     <a href="https://github.com/nessan/cmake" title="GitHub repo" class="quarto-navigation-tool px-1" aria-label="GitHub repo"><i class="bi bi-github"></i></a>
+    <a href="https://twitter.com/nezzan" title="" class="quarto-navigation-tool px-1" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -201,7 +207,7 @@ gtag('config', 'G-RDX9014Z7X', { 'anonymize_ip': true});
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">CMake Modules</h1>
+          <h1 class="quarto-secondary-nav-title">Add Targets for lots of Small Executables</h1>
         </a>     
     </div>
   </nav>
@@ -214,43 +220,43 @@ gtag('config', 'G-RDX9014Z7X', { 'anonymize_ip': true});
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../pages/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/disable_in_source_builds.html" class="sidebar-item-text sidebar-link">
+  <a href="../pages/disable_in_source_builds.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Build Hygiene</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/compiler_init.html" class="sidebar-item-text sidebar-link">
+  <a href="../pages/compiler_init.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Picky Compiler</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/add_executables.html" class="sidebar-item-text sidebar-link">
+  <a href="../pages/add_executables.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Small Executables</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/add_archive.html" class="sidebar-item-text sidebar-link">
+  <a href="../pages/add_archive.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Archive Targets</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/fetch_content.html" class="sidebar-item-text sidebar-link">
+  <a href="../pages/fetch_content.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">FetchContent</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/systematize.html" class="sidebar-item-text sidebar-link">
+  <a href="../pages/systematize.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">External Headers</span></a>
   </div>
 </li>
@@ -264,23 +270,18 @@ gtag('config', 'G-RDX9014Z7X', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#available-modules" id="toc-available-modules" class="nav-link active" data-scroll-target="#available-modules">Available Modules</a></li>
-  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a></li>
-  <li><a href="#usage" id="toc-usage" class="nav-link" data-scroll-target="#usage">Usage</a></li>
-  <li><a href="#documentation" id="toc-documentation" class="nav-link" data-scroll-target="#documentation">Documentation</a>
-  <ul class="collapse">
-  <li><a href="#contact" id="toc-contact" class="nav-link" data-scroll-target="#contact">Contact</a></li>
-  <li><a href="#copyright-and-license" id="toc-copyright-and-license" class="nav-link" data-scroll-target="#copyright-and-license">Copyright and License</a></li>
-  </ul></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#rationale" id="toc-rationale" class="nav-link" data-scroll-target="#rationale">Rationale</a></li>
+  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/nessan/cmake/edit/main/docs/content/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nessan/cmake/issues/new/choose" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/nessan/cmake/edit/main/docs/pages/add_executables.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nessan/cmake/issues/new/choose" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">CMake Modules</h1>
+<h1 class="title d-none d-lg-block">Add Targets for lots of Small Executables</h1>
 </div>
 
 
@@ -301,78 +302,45 @@ gtag('config', 'G-RDX9014Z7X', { 'anonymize_ip': true});
 <!--Links to software tools, etc., that we reference -->
 <!-- Formatted links to pages for external items -->
 <!-- Formatted links to all the module pages -->
-<p>This repository has some modules for the <a href="https://cmake.org/documentation"><code>CMake</code></a> build system. Each module is entirely stand-alone, so you can copy any file of interest directly into your project and use it like any other CMake <a href="https://cmake.org/cmake/help/book/mastering-cmake/chapter/Modules.html">module</a>.</p>
-<section id="available-modules" class="level2">
-<h2 class="anchored" data-anchor-id="available-modules">Available Modules</h2>
-<div class="table-responsive">
-<table class="table-bordered table-striped table-hover table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 67%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Module</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><a href="../content/disable_in_source_builds.html"><code>disable_in_source_builds</code></a></td>
-<td>Enforces build hygiene.</td>
-</tr>
-<tr class="even">
-<td><a href="../content/compiler_init.html"><code>compiler_init</code></a></td>
-<td>Initializes the compiler to be picky.</td>
-</tr>
-<tr class="odd">
-<td><a href="../content/add_executables.html"><code>add_executables</code></a></td>
-<td>Adds targets for many small one-file executables.</td>
-</tr>
-<tr class="even">
-<td><a href="../content/add_archive.html"><code>add_archive</code></a></td>
-<td>Adds a target to create an archive of some files/directories.</td>
-</tr>
-<tr class="odd">
-<td><a href="../content/fetch_content.html"><code>fetch_content</code></a></td>
-<td>A small wrapper around the standard <a href="https://cmake.org/cmake/help/latest/module/FetchContent.html"><code>FetchContent</code></a> module.</td>
-</tr>
-<tr class="even">
-<td><a href="../content/systematize.html"><code>systematize</code></a></td>
-<td>Treat the header files for an imported library as “system” includes.</td>
-</tr>
-</tbody>
-</table>
-</div>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p><code>add_executables(directory,...)</code> walks through a directory of source files and adds targets to build each one, and each group, into executables.</p>
+<p>To use this function, we expect each file in the directory to compile into a separate executable.</p>
+<p>For example, if the directory has a file <code>Foo.cpp</code> the function will create a target <code>Foo</code> that compiles <code>Foo.cpp</code> and links the object file to any trailing arguments which generally are libraries.</p>
+<p>Moreover, if the source files in the directory follow a simple sequential naming scheme, the function will also add some convenience targets that build whole <em>groups</em> of executables at once. For example, suppose the project looks like:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">project/</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> .git</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> CMakeLists.txt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> cmake</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> └── add_executables.cmake</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> examples</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── Bar01.cpp</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── Bar02.cpp</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── Bar03.cpp</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── Foo01.cpp</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> └── Foo02.cpp</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ex">└──</span> ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and your <code>CMakeLists.txt</code> file has some lines like</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cmake code-with-copy"><code class="sourceCode cmake"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">list</span>(<span class="ot">APPEND</span> <span class="dv">CMAKE_MODULE_PATH</span> <span class="st">"</span><span class="dv">${CMAKE_SOURCE_DIR}</span><span class="st">/cmake"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">include</span>(add_executables)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">add_executables</span>(examples ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>then <code>CMake</code> will create individual targets for <code>Bar01</code>, <code>Bar02</code>, <code>Bar03</code>, <code>Foo01</code>, and <code>Foo02</code>. It will also create a convenience target <code>Bar</code> that expands to <code>Bar01</code>, <code>Bar02</code>, and <code>Bar03</code>, another convenience target <code>Foo</code> that expands to <code>Foo01</code>, and <code>Foo02</code>, and finally, a target <code>examples</code> that expands to <em>all</em> the individual targets.</p>
 </section>
-<section id="installation" class="level2">
-<h2 class="anchored" data-anchor-id="installation">Installation</h2>
-<p>The modules are stand-alone, so you can copy any file of interest directly into your project and use it like any other <code>CMake</code> module. By convention, one puts modules like these in a top-level subdirectory called <code>cmake</code>.</p>
+<section id="rationale" class="level2">
+<h2 class="anchored" data-anchor-id="rationale">Rationale</h2>
+<p>Library developers will often develop an extensive set of simple command line tools that exercise various features of their library either as demos or as tests. This is how one ends up with a directory like the <code>examples</code> above.</p>
+<p>The <code>add_executables</code> function makes it easy to grow that collection of executables without worrying about adding them to some <code>CMakeLists.txt</code> file. It also makes building some of those executables as a group easy.</p>
 </section>
-<section id="usage" class="level2">
-<h2 class="anchored" data-anchor-id="usage">Usage</h2>
-<p>However you get the modules, you use them by letting <code>CMake</code> know where they are, including the particular ones of interest, and invoking the corresponding function.</p>
-<p>For example, if you have copied the files into a top-level subdirectory <code>cmake</code>, then your <code>CMakeLists.txt</code> file might include some lines like:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cmake code-with-copy"><code class="sourceCode cmake"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">list</span>(<span class="ot">APPEND</span> <span class="dv">CMAKE_MODULE_PATH</span> <span class="st">"</span><span class="dv">${CMAKE_SOURCE_DIR}</span><span class="st">/cmake"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">include</span>(disable_in_source_builds)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">disable_in_source_builds</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="documentation" class="level2">
-<h2 class="anchored" data-anchor-id="documentation">Documentation</h2>
-<p>The project’s source code repository is <a href="https://github.com/nessan/cmake">here</a>.<br>
-You can read the project’s documentation <a href="https://nessan.github.io/cmake">here</a>.<br>
-We used the static website generator <a href="https://quarto.org">Quarto</a> to construct the documentation site.</p>
-<section id="contact" class="level3">
-<h3 class="anchored" data-anchor-id="contact">Contact</h3>
-<p>You can contact me by email <a href="mailto:nzznfitz+gh@icloud.com">here</a>.</p>
-</section>
-<section id="copyright-and-license" class="level3">
-<h3 class="anchored" data-anchor-id="copyright-and-license">Copyright and License</h3>
-<p>Copyright (c) 2022-present Nessan Fitzmaurice.<br>
-You can use this software under the <a href="https://opensource.org/license/mit">MIT license</a>.</p>
+<section id="notes" class="level2">
+<h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<ol type="1">
+<li>The first argument to <code>add_executables(...)</code> must be a directory. All other trailing arguments are assumed to be libraries to which the executables must be linked.</li>
+<li>The created targets have the <code>CMake</code> <a href="https://cmake.org/cmake/help/latest/prop_tgt/EXCLUDE_FROM_ALL.html"><code>EXCLUDE_FROM_ALL</code></a> attribute set.</li>
+<li>The module also defines other helper functions that might be useful elsewhere.</li>
+<li>Currently, the module only handles <code>.cpp</code> and <code>.c</code> files in the passed directory argument.</li>
+</ol>
 
 
-</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -787,10 +755,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../pages/compiler_init.html" class="pagination-link" aria-label="Picky Compiler">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Picky Compiler</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../content/disable_in_source_builds.html" class="pagination-link" aria-label="Build Hygiene">
-        <span class="nav-page-text">Build Hygiene</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../pages/add_archive.html" class="pagination-link" aria-label="Archive Targets">
+        <span class="nav-page-text">Archive Targets</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -802,13 +773,20 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
 <p>Modules are available under the MIT License</p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/nessan/cmake/edit/main/docs/content/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nessan/cmake/issues/new/choose" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/nessan/cmake/edit/main/docs/pages/add_executables.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nessan/cmake/issues/new/choose" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
-    <li class="nav-item">
+    <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/nessan/cmake">
-<p>Project Repo</p>
-</a>
+      <i class="bi bi-github" role="img" aria-label="GitHub Repo">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/nezzan">
+      <i class="bi bi-twitter" role="img" aria-label="Twitter">
+</i> 
+    </a>
   </li>  
 </ul>
     </div>
