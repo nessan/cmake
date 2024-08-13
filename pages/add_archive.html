@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.555">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>CMake Modules Library - Create Archives</title>
+<title>Create Archives – CMake Modules Library</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -113,11 +113,11 @@ gtag('config', 'G-RDX9014Z7X', { 'anonymize_ip': true});
 </script>
 
 
-<meta property="og:title" content="CMake Modules Library - Create Archives">
+<meta property="og:title" content="Create Archives – CMake Modules Library">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://nessan.github.io/cmake/pages/assets/images/logo.jpg">
 <meta property="og:site_name" content="CMake Modules Library">
-<meta name="twitter:title" content="CMake Modules Library - Create Archives">
+<meta name="twitter:title" content="Create Archives – CMake Modules Library">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://nessan.github.io/cmake/pages/assets/images/logo.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -138,7 +138,7 @@ gtag('config', 'G-RDX9014Z7X', { 'anonymize_ip': true});
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -172,7 +172,7 @@ gtag('config', 'G-RDX9014Z7X', { 'anonymize_ip': true});
 <span class="menu-text">Systematize</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-more" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-more" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">More</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-more">    
@@ -195,7 +195,7 @@ gtag('config', 'G-RDX9014Z7X', { 'anonymize_ip': true});
   </li>
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
     <a href="https://github.com/nessan/cmake" title="GitHub repo" class="quarto-navigation-tool px-1" aria-label="GitHub repo"><i class="bi bi-github"></i></a>
     <a href="https://twitter.com/nezzan" title="" class="quarto-navigation-tool px-1" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
 </div>
@@ -203,10 +203,10 @@ gtag('config', 'G-RDX9014Z7X', { 'anonymize_ip': true});
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
           <h1 class="quarto-secondary-nav-title">Create Archives</h1>
         </a>     
     </div>
@@ -318,7 +318,7 @@ gtag('config', 'G-RDX9014Z7X', { 'anonymize_ip': true});
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">include</span>(add_archive)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">add_archive</span>(LICENSE CMakeLists.txt source include)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This call will add a new target to the build called <code>archive</code> using all default values for the various parameters.</p>
-<p>Invoking that target will create a zipped archive file containing the arguments that were passed to the function. In this case, presumably, <code>LICENSE</code> and <code>CMakeLists.txt</code> are files while <code>source</code> and <code>include</code> are directories.</p>
+<p>Invoking that target will create a zipped archive file containing the arguments passed to the function. In this case, presumably, <code>LICENSE</code> and <code>CMakeLists.txt</code> are files, while <code>source</code> and <code>include</code> are directories.</p>
 <section id="keyword-arguments" class="level3">
 <h3 class="anchored" data-anchor-id="keyword-arguments">Keyword Arguments</h3>
 <div class="table-responsive">
@@ -386,23 +386,23 @@ Available compression algorithms
 <div class="sourceCode" id="cb2"><pre class="sourceCode cmake code-with-copy"><code class="sourceCode cmake"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">include</span>(<span class="im">FetchContent</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">FetchContent_Declare</span>(ExternalLib <span class="ot">URL</span> https:://github.com/.../ExternalLib.git)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">FetchContent_MakeAvailable</span>(ExternalLib)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>As long as <code>ExternalLib</code> has a reasonable <code>CMakeLists.txt</code> file, <code>FetchContent</code> takes care of cloning its repo, building the library as needed, pointing your <code>#include "ExternalLib/whatever.h</code> at the right spot, and of course linking in the library as needed.</p>
+<p>As long as <code>ExternalLib</code> has a reasonable <code>CMakeLists.txt</code> file, <code>FetchContent</code> takes care of cloning its repo, building the library as needed, pointing your <code>#include "ExternalLib/whatever.h</code> at the right spot, and of course, linking in the library as needed.</p>
 <p>All done automatically and out of sight! What’s not to like?</p>
 <p>The only slight issue is that, when used this way, <code>FetchContent...</code> downloads the entire <code>ExternalLib</code> repo, which probably contains useless content regarding your project. There will typically be lots of test files, example programs, <code>ExternalLib</code> documentation, etc., which is good if you are developing <code>ExternalLib</code> but generally not relevant for the downstream application!</p>
-<p>For that reason, <code>FetchContent</code> supports another mode of operation where it can download just enough from the <code>ExternalLib</code> repo to make it operational for the library’s consumer. This mode of operation relies on the creator of <code>ExternalLib</code> providing such a minimal archive in the first place. Assuming it’s available, then a consumer of the library can proceed as follows:</p>
+<p>Therefore, <code>FetchContent</code> supports another mode of operation where it can download just enough from the <code>ExternalLib</code> repo to make it operational for the library’s consumer. This mode of operation relies on the creator of <code>ExternalLib,</code> providing such a minimal archive in the first place. Assuming it’s available, then a consumer of the library can proceed as follows:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode cmake code-with-copy"><code class="sourceCode cmake"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">include</span>(<span class="im">FetchContent</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">FetchContent_Declare</span>(ExternalLib <span class="ot">URL</span> https://github.com/.../ExternalLib.zip)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">FetchContent_MakeAvailable</span>(ExternalLib)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In this mode, <code>FetchContent</code> downloads the <code>zip</code> archive, unpacks it into your project’s build directory, and, assuming there is enough information in the archive, will still take care of all the needed point the compiler to the correct location for the headers, linking the library, etc.</p>
 <p>Again, this is all done automatically and out of sight, but with the advantage that the download is typically a fraction of the entire <code>ExternalLib</code> repo.</p>
 <p>The natural question is, what exactly should that <code>ExternalLib.zip</code> archive contain for this to work?</p>
-<p>You must include the library’s <code>CMakeLists.txt</code> file as that is how <code>FetchContent</code> will understand the library structure (where to find the library headers, how to build it, etc.). Of course, you should include the headers for the library and the sources needed to build it. Finally, you will typically include the <code>LICENSE</code> file, which is not an operational necessity but generally a tiny file and best kept.</p>
+<p>You must include the library’s <code>CMakeLists.txt</code> file as that is how <code>FetchContent</code> will understand the library structure (where to find the library headers, how to build it, etc.). Of course, you should include the headers for the library and the sources needed to build it. Finally, you will typically include the <code>LICENSE</code> file, which is not an operational necessity but generally a tiny file that is best kept.</p>
 </section>
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
 <ol type="1">
-<li>Once you have set up the <code>archive</code> target, you probably want to add a job to your CI/CD pipeline that invokes <code>cmake</code> to build it automatically. The pipeline should run whenever you push a new release tag into the repo. How you do that depends on which cloud repository you use.</li>
-<li><code>CMake</code> comes with <code>CPack</code> that can do something similar.</li>
+<li>Once you have set up the <code>archive</code> target, you should probably add a job to your CI/CD pipeline that invokes <code>cmake</code> to build it automatically. The pipeline should run whenever you push a new release tag into the repo. How you do that depends on which cloud repository you use.</li>
+<li><code>CMake</code> comes with `CPack, which can do something similar.</li>
 </ol>
 
 
@@ -444,18 +444,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -487,7 +476,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/nessan\.github\.io\/cmake");
@@ -495,7 +506,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
