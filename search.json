@@ -4,7 +4,7 @@
     "href": "pages/index.html",
     "title": "CMake Modules",
     "section": "",
-    "text": "This repository has some modules for the CMake build system. Each module is entirely stand-alone, so you can copy any file of interest directly into your project and use it like any other CMake module.",
+    "text": "This repository has some extra modules for the CMake build system. Each module is entirely stand-alone, so you can copy any file of interest directly into your project and use it like any other CMake module.",
     "crumbs": [
       "Home",
       "Overview"
@@ -213,7 +213,7 @@
     "href": "index.html",
     "title": "CMake Modules",
     "section": "",
-    "text": "This repository has some modules for the CMake build system. Each module is entirely stand-alone, so you can copy any file of interest directly into your project and use it like any other CMake module."
+    "text": "This repository has some extra modules for the CMake build system. Each module is entirely stand-alone, so you can copy any file of interest directly into your project and use it like any other CMake module."
   },
   {
     "objectID": "index.html#available-modules",
@@ -242,39 +242,6 @@
     "title": "CMake Modules",
     "section": "Documentation",
     "text": "Documentation\nHere is a link to the project’s source code repository.\nThis documentation site was constructed using the static website generator Quarto.\n\nContact\nYou can contact me by email\n\n\nCopyright and License\nCopyright (c) 2022-present Nessan Fitzmaurice.\nYou can use this software under the MIT License"
-  },
-  {
-    "objectID": "pages/systematize.html",
-    "href": "pages/systematize.html",
-    "title": "Suppress Warnings from External Headers",
-    "section": "",
-    "text": "This module lets you treat a library’s header files as system headers.\nWe want to compile our code with a maximal set of compiler checks. We also treat all compiler warnings as errors, which forces us to clean our code early in the development cycle. See compiler_init.\nHowever, by default, these rather strict compiler flags also get applied to any imported header files from an external library. When we import a library into our project, we often receive compiler warnings from its header files.\nOf course, a lot of the warnings are not that important and often concern deprecated features that the library uses so it can support ancient compilers and so on. Ideally, all of these get cleaned up by conditional compilation. However, that is probably not immediately practical for a library you do not own. This leaves you with screen after screen of errors hiding the warnings you are interested in.\nOne way to suppress all those warnings is to treat the imported header files as “system” header files. Compilers generally ignore warnings issued from system headers.",
-    "crumbs": [
-      "Home",
-      "External Headers"
-    ]
-  },
-  {
-    "objectID": "pages/systematize.html#introduction",
-    "href": "pages/systematize.html#introduction",
-    "title": "Suppress Warnings from External Headers",
-    "section": "",
-    "text": "This module lets you treat a library’s header files as system headers.\nWe want to compile our code with a maximal set of compiler checks. We also treat all compiler warnings as errors, which forces us to clean our code early in the development cycle. See compiler_init.\nHowever, by default, these rather strict compiler flags also get applied to any imported header files from an external library. When we import a library into our project, we often receive compiler warnings from its header files.\nOf course, a lot of the warnings are not that important and often concern deprecated features that the library uses so it can support ancient compilers and so on. Ideally, all of these get cleaned up by conditional compilation. However, that is probably not immediately practical for a library you do not own. This leaves you with screen after screen of errors hiding the warnings you are interested in.\nOne way to suppress all those warnings is to treat the imported header files as “system” header files. Compilers generally ignore warnings issued from system headers.",
-    "crumbs": [
-      "Home",
-      "External Headers"
-    ]
-  },
-  {
-    "objectID": "pages/systematize.html#usage",
-    "href": "pages/systematize.html#usage",
-    "title": "Suppress Warnings from External Headers",
-    "section": "Usage",
-    "text": "Usage\nSuppose ExternalLib is the external library we import into our project. ExternalLib has some potentially problematic header files in its include directory.\nAssuming the systematize.cmake file is in a top-level cmake directory, and you might invoke it as follows:\nlist(APPEND CMAKE_MODULE_PATH \"${CMAKE_SOURCE_DIR}/cmake\")\ninclude(systematize)\nsystematize(ExternalLib)\nThe systematize function adds the CMake SYSTEM attribute to the ExternalLib, including its header files, and compilers will then stop issuing warnings from that location.",
-    "crumbs": [
-      "Home",
-      "External Headers"
-    ]
   },
   {
     "objectID": "pages/fetch_content.html",
@@ -351,6 +318,39 @@
     "crumbs": [
       "Home",
       "Small Executables"
+    ]
+  },
+  {
+    "objectID": "pages/systematize.html",
+    "href": "pages/systematize.html",
+    "title": "Suppress Warnings from External Headers",
+    "section": "",
+    "text": "This module lets you treat a library’s header files as system headers.\nWe want to compile our code with a maximal set of compiler checks. We also treat all compiler warnings as errors, which forces us to clean our code early in the development cycle. See compiler_init.\nHowever, by default, these rather strict compiler flags also get applied to any imported header files from an external library. When we import a library into our project, we often receive compiler warnings from its header files.\nOf course, a lot of the warnings are not that important and often concern deprecated features that the library uses so it can support ancient compilers and so on. Ideally, all of these get cleaned up by conditional compilation. However, that is probably not immediately practical for a library you do not own. This leaves you with screen after screen of errors hiding the warnings you are interested in.\nOne way to suppress all those warnings is to treat the imported header files as “system” header files. Compilers generally ignore warnings issued from system headers.",
+    "crumbs": [
+      "Home",
+      "External Headers"
+    ]
+  },
+  {
+    "objectID": "pages/systematize.html#introduction",
+    "href": "pages/systematize.html#introduction",
+    "title": "Suppress Warnings from External Headers",
+    "section": "",
+    "text": "This module lets you treat a library’s header files as system headers.\nWe want to compile our code with a maximal set of compiler checks. We also treat all compiler warnings as errors, which forces us to clean our code early in the development cycle. See compiler_init.\nHowever, by default, these rather strict compiler flags also get applied to any imported header files from an external library. When we import a library into our project, we often receive compiler warnings from its header files.\nOf course, a lot of the warnings are not that important and often concern deprecated features that the library uses so it can support ancient compilers and so on. Ideally, all of these get cleaned up by conditional compilation. However, that is probably not immediately practical for a library you do not own. This leaves you with screen after screen of errors hiding the warnings you are interested in.\nOne way to suppress all those warnings is to treat the imported header files as “system” header files. Compilers generally ignore warnings issued from system headers.",
+    "crumbs": [
+      "Home",
+      "External Headers"
+    ]
+  },
+  {
+    "objectID": "pages/systematize.html#usage",
+    "href": "pages/systematize.html#usage",
+    "title": "Suppress Warnings from External Headers",
+    "section": "Usage",
+    "text": "Usage\nSuppose ExternalLib is the external library we import into our project. ExternalLib has some potentially problematic header files in its include directory.\nAssuming the systematize.cmake file is in a top-level cmake directory, and you might invoke it as follows:\nlist(APPEND CMAKE_MODULE_PATH \"${CMAKE_SOURCE_DIR}/cmake\")\ninclude(systematize)\nsystematize(ExternalLib)\nThe systematize function adds the CMake SYSTEM attribute to the ExternalLib, including its header files, and compilers will then stop issuing warnings from that location.",
+    "crumbs": [
+      "Home",
+      "External Headers"
     ]
   }
 ]
