@@ -48,7 +48,7 @@
     "href": "pages/index.html#documentation",
     "title": "CMake Modules",
     "section": "Documentation",
-    "text": "Documentation\nThe project’s source code repository is here.\nYou can read the project’s documentation here.\nWe used the static website generator Quarto to construct the documentation site.\n\nContact\nYou can contact me by email here.\n\n\nCopyright and License\nCopyright (c) 2022-present Nessan Fitzmaurice.\nYou can use this software under the MIT license.",
+    "text": "Documentation\nHere is a link to the project’s source code repository.\nThis documentation site was constructed using the static website generator Quarto.\n\nContact\nYou can contact me by email\n\n\nCopyright and License\nCopyright (c) 2022-present Nessan Fitzmaurice.\nYou can use this software under the MIT License",
     "crumbs": [
       "Home",
       "Overview"
@@ -241,7 +241,7 @@
     "href": "index.html#documentation",
     "title": "CMake Modules",
     "section": "Documentation",
-    "text": "Documentation\nThe project’s source code repository is here.\nYou can read the project’s documentation here.\nWe used the static website generator Quarto to construct the documentation site.\n\nContact\nYou can contact me by email here.\n\n\nCopyright and License\nCopyright (c) 2022-present Nessan Fitzmaurice.\nYou can use this software under the MIT license."
+    "text": "Documentation\nHere is a link to the project’s source code repository.\nThis documentation site was constructed using the static website generator Quarto.\n\nContact\nYou can contact me by email\n\n\nCopyright and License\nCopyright (c) 2022-present Nessan Fitzmaurice.\nYou can use this software under the MIT License"
   },
   {
     "objectID": "pages/systematize.html",
