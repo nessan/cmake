@@ -4,7 +4,7 @@
     "href": "pages/index.html",
     "title": "CMake Modules",
     "section": "",
-    "text": "This repository has some extra modules for the CMake build system. Each module is entirely stand-alone, so you can copy any file of interest directly into your project and use it like any other CMake module.",
+    "text": "This repository has some modules for the CMake build system. Each module is entirely stand-alone, so you can copy any file of interest directly into your project and use it like any other CMake module.",
     "crumbs": [
       "Home",
       "Overview"
@@ -213,7 +213,7 @@
     "href": "index.html",
     "title": "CMake Modules",
     "section": "",
-    "text": "This repository has some extra modules for the CMake build system. Each module is entirely stand-alone, so you can copy any file of interest directly into your project and use it like any other CMake module."
+    "text": "This repository has some modules for the CMake build system. Each module is entirely stand-alone, so you can copy any file of interest directly into your project and use it like any other CMake module."
   },
   {
     "objectID": "index.html#available-modules",
