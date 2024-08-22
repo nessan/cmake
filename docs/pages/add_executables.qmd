@@ -1,0 +1,54 @@
+---
+title: Add Targets for lots of Small Executables
+---
+
+## Introduction
+
+`add_executables(directory,...)` walks through a directory of source files and adds targets to build each one and each group into executables.
+
+To use this function, we expect each file in the directory to be compiled into a separate executable.
+
+For example, if the directory has a file `Foo.cpp, the function will create a target Foo that compiles Foo.cpp and links the object file to any trailing arguments, which are generally libraries.
+
+Moreover, if the source files in the directory follow a simple sequential naming scheme, the function will also add some convenience targets that simultaneously build whole groups of executables.
+For example, suppose the project looks like:
+
+```sh
+project/
+├── .git
+├── CMakeLists.txt
+├── cmake
+│   └── add_executables.cmake
+├── examples
+│   ├── Bar01.cpp
+│   ├── Bar02.cpp
+│   ├── Bar03.cpp
+│   ├── Foo01.cpp
+│   └── Foo02.cpp
+└── ...
+```
+and your `CMakeLists.txt` file has some lines like
+
+```cmake
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+include(add_executables)
+add_executables(examples ...)
+```
+then `CMake` will create individual targets for `Bar01`, `Bar02`, `Bar03`, `Foo01`, and `Foo02`.
+It will also create a convenience target `Bar` that expands to `Bar01`, `Bar02`, and `Bar03`, another convenience target `Foo` that expands to `Foo01`, and `Foo02`, and finally, a target `examples` that expands to _all_ the individual targets.
+
+## Rationale
+
+Library developers often develop an extensive set of simple command-line tools that demonstrate or test various features of their library.
+This is how one ends up with a directory like the `examples` above.
+
+The `add_executables` function makes it easy to grow that collection of executables without worrying about adding them to some `CMakeLists.txt` file.
+It also makes building some of those executables as a group easy.
+
+## Notes
+
+1. The first argument to `add_executables(...)` must be a directory.
+All other trailing arguments are assumed to be libraries to which the executables must be linked.
+2. The created targets have the `CMake` {EXCLUDE_FROM_ALL} attribute set.
+3. The module also defines other helper functions that might be useful elsewhere.
+4. Currently, the module only handles `.cpp` and `.c` files in the passed directory argument.

@@ -1,0 +1,49 @@
+---
+title: CMake Modules
+---
+
+This repository has some modules for the {cmake} build system.
+Each module is entirely stand-alone, so you can copy any file of interest directly into your project and use it like any other CMake {module}.
+
+## Available Modules
+
+Module                     | Description
+-------------------------- | -----------
+{disable_in_source_builds} | Enforces build hygiene.
+{compiler_init}            | Initializes the compiler to be picky.
+{add_executables}          | Adds targets for many small one-file executables.
+{add_archive}              | Adds a target to create an archive of some files/directories.
+{fetch_content}            | A small wrapper around the standard {FetchContent} module.
+{systematize}              | Treat the header files for an imported library as “system” includes.
+: {.bordered .striped .hover .responsive tbl-colwidths="[30,70]"}
+
+## Installation
+
+The modules are stand-alone, so you can copy any file of interest directly into your project and use it like any other `CMake` module.
+By convention, one puts modules like these in a top-level subdirectory called `cmake`.
+
+## Usage
+
+However you get the modules, you use them by letting `CMake` know where they are, including the particular ones of interest, and invoking the corresponding function.
+
+For example, if you have copied the files into a top-level subdirectory `cmake`, then your `CMakeLists.txt` file might include some lines like:
+
+```cmake
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+include(disable_in_source_builds)
+disable_in_source_builds()
+```
+
+## Documentation
+
+Here is a link to the project's source code {repo}. \
+This {docs} site was constructed using the static website generator {quarto}.
+
+### Contact
+
+You can contact me by {email}
+
+### Copyright and License
+
+Copyright (c) 2022-present Nessan Fitzmaurice. \
+You can use this software under the {mit-license}

@@ -1,0 +1,91 @@
+---
+title: Create Archives
+---
+
+## Introduction
+
+`add_archive(...)` adds a build target that packages a set of files/directories into a compressed archive.
+
+The function takes some optional keyword arguments and all the others should be the files and directories you want placed in the archive.
+
+## Usage
+
+Assuming the module file is in the top-level `cmake` directory, you might use the function as follows in your `CMakeLists.txt` file
+
+```cmake
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+include(add_archive)
+add_archive(LICENSE CMakeLists.txt source include)
+```
+
+This call will add a new target to the build called `archive` using all default values for the various parameters.
+
+Invoking that target will create a zipped archive file containing the arguments passed to the function.
+In this case, presumably, `LICENSE` and `CMakeLists.txt` are files, while `source` and `include` are directories.
+
+### Keyword Arguments
+
+Argument            | Description                                               | Default Value
+------------------- | --------------------------------------------------------- | ------------------------------
+`VERBOSE`           | Set to get some informative messages on configuration.    | `OFF`
+`ARCHIVE_BASENAME`  | The basename for the archive.                             | `${PROJECT_NAME}`
+`ARCHIVE_FORMAT`    | The format for the archive.                               | `zip`
+`ARCHIVE_TARGET`    | The name of the build target that creates the archive.    | `archive`
+`ARCHIVE_LOCATION`  | Where the archive is output to.                           | `${CMAKE_CURRENT_BINARY_DIR}`
+
+: {.bordered .striped .hover .responsive tbl-colwidths="[20,60,20]"}
+
+::: {.callout-note}
+# Available compression algorithms
+The archive uses the `CMake` native `tar` command.
+Browsing the `CMake` source code, that command seems to support `zip`, `7zip`, `gnutar`,`pax`, and `paxr` as possible compression formats.
+:::
+
+## Rationale
+
+One use of this function is creating a minimal archive of a library's essential content.
+Rather than downloading the library’s entire repo, a downstream-consuming project might be able to use the minimal archive version efficiently.
+
+The `CMake` module {FetchContent} is an excellent tool that allows one to pull a library from a remote repo into a project that will use it.
+For example:
+
+```cmake
+include(FetchContent)
+FetchContent_Declare(ExternalLib URL https:://github.com/.../ExternalLib.git)
+FetchContent_MakeAvailable(ExternalLib)
+```
+
+As long as `ExternalLib` has a reasonable `CMakeLists.txt` file, `FetchContent` takes care of cloning its repo, building the library as needed, pointing your `#include "ExternalLib/whatever.h` at the right spot, and of course, linking in the library as needed.
+
+All done automatically and out of sight!
+What's not to like?
+
+The only slight issue is that, when used this way, `FetchContent...` downloads the entire `ExternalLib` repo, which probably contains useless content regarding your project.
+There will typically be lots of test files, example programs, `ExternalLib` documentation, etc., which is good if you are developing `ExternalLib` but generally not relevant for the downstream application!
+
+Therefore, `FetchContent` supports another mode of operation where it can download just enough from the `ExternalLib` repo to make it operational for the library's consumer.
+This mode of operation relies on the creator of `ExternalLib,` providing such a minimal archive in the first place.
+Assuming it’s available, then a consumer of the library can proceed as follows:
+
+```cmake
+include(FetchContent)
+FetchContent_Declare(ExternalLib URL https://github.com/.../ExternalLib.zip)
+FetchContent_MakeAvailable(ExternalLib)
+```
+
+In this mode, `FetchContent` downloads the `zip` archive, unpacks it into your project’s build directory, and, assuming there is enough information in the archive, will still take care of all the needed point the compiler to the correct location for the headers, linking the library, etc.
+
+Again, this is all done automatically and out of sight, but with the advantage that the download is typically a fraction of the entire `ExternalLib` repo.
+
+The natural question is, what exactly should that `ExternalLib.zip` archive contain for this to work?
+
+You must include the library's `CMakeLists.txt` file as that is how `FetchContent` will understand the library structure (where to find the library headers, how to build it, etc.).
+Of course, you should include the headers for the library and the sources needed to build it.
+Finally, you will typically include the `LICENSE` file, which is not an operational necessity but generally a tiny file that is best kept.
+
+## Notes
+
+1. Once you have set up the `archive` target, you should probably add a job to your CI/CD pipeline that invokes `cmake` to build it automatically.
+The pipeline should run whenever you push a new release tag into the repo.
+How you do that depends on which cloud repository you use.
+1. `CMake` comes with `CPack, which can do something similar.

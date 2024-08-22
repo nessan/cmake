@@ -1,0 +1,45 @@
+---
+title: A Wrapper Around `FetchContent`
+---
+
+## Introduction
+
+`fetch_content(...)` is a wrapper around the `CMake` module {FetchContent}
+
+That standard module is a tool to pull a code base or library from a remote repo into a project that will use it.
+
+For example, the consumer of a remote library might have some lines in their `CMakeLists.txt` file like these:
+
+```cmake
+include(FetchContent)
+FetchContent_Declare(ExternalLib URL https:://github.com/.../ExternalLib.git ...)
+FetchContent_MakeAvailable(ExternalLib)
+```
+
+Those trailing ...'s in that first `FetchContent_Declare` call represent the many options that function can have.
+Some of those options should be the default.
+Adding those defaults is the primary purpose of `fetch_content`.
+
+## Usage
+
+Assuming the `fetch_content.cmake` file is located in a top-level `cmake` directory in the `CMakeLists.txt` file, you might use the function as follows:
+
+```cmake
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+include(fetch_content)
+fetch_content(ExternalLib URL https:://github.com/.../ExternalLib.git ...)
+```
+
+This will essentially do the `FetchContent_Declare,` and `FetchContent_MakeAvailable` calls above but will also add several recommended options to those calls.
+In particular, it will tell `FetchContent` to check to see if the package is already available on the system, avoiding cloning any repo.
+It will also ensure that any repo clones done will be as shallow as possible to speed things up.
+
+::: {.callout-warning}
+# Liable to change
+This module will probably change in the future as `FetchContent` develops.
+:::
+
+::: {.callout-note}
+# `CPM`
+The CMake Package Manager {CPM} is a much fuller featured wrapper around {FetchContent}.
+:::

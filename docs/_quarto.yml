@@ -1,0 +1,123 @@
+# Metadata for this documentation project.
+# See https://quarto.orgpages/reference/projects/websites.html
+project:
+    type: website
+    output-dir: _site
+
+# Extensions:
+# simple-vars: Lets us reference variables as `{name}`  instead of the wordier `{{< var name >}}`
+filters:
+    - simple-vars
+
+format:
+    html:
+        toc: true
+        toc-expand: true
+        code-copy: true
+        code-overflow: scroll
+        grid:
+            sidebar-width: 250px
+            body-width: 950px
+            margin-width: 200px
+            gutter-width: 1.5em
+        theme:
+            light:
+                - cosmo
+                - assets/css/theme.scss
+                - assets/css/extras.scss
+            dark:
+                - cosmo
+                - assets/css/theme.scss
+                - assets/css/dark.scss
+                - assets/css/extras.scss
+
+website:
+    title: "CMake Modules"
+    image: "assets/images/logo.jpg"
+    favicon: "assets/images/logo.jpg"
+    open-graph: true
+    google-analytics: G-RDX9014Z7X
+    site-url: "https://nessan.github.io/cmake"
+    repo-url: "https://github.com/nessan/cmake"
+    repo-subdir: docs
+    issue-url: "https://github.com/nessan/cmake/issues/new/choose"
+    repo-actions: [edit, issue]
+    page-navigation: true
+    bread-crumbs: false
+    back-to-top-navigation: true
+    page-footer:
+        left: |
+            &#169; 2022 Nessan &#8729; Made with [Quarto](https://quarto.org)
+        center:
+            - icon: github
+              href: "https://github.com/nessan/cmake"
+              aria-label: GitHub Repo
+            - icon: envelope
+              href: "mailto:nzznfitz+gh@icloud.com"
+              aria-label: EMail address
+        right: |
+            [MIT Licensed](https://opensource.org/license/mit)
+
+    navbar:
+        background: dark
+        logo: "assets/images/logo.jpg"
+        logo-alt: "The cmake library logo"
+        title: modules
+        search: true
+        pinned: true
+        collapse-below: lg
+        left:
+            - text: "Home"
+              file: pages/index.qmd
+            - text: "Hygiene"
+              file: pages/disable_in_source_builds.qmd
+            - text: "Warnings"
+              file: pages/compiler_init.qmd
+            - text: "Small Executables"
+              file: pages/add_executables.qmd
+            - text: "Archives"
+              file: pages/add_archive.qmd
+            - text: "FetchContent"
+              file: pages/fetch_content.qmd
+            - text: "Systematize"
+              file: pages/systematize.qmd
+            - text: "More"
+              menu:
+                  - text: "Project Repo"
+                    icon: "github"
+                    href: "https://github.com/nessan/cmake"
+                  - text: "Report a Bug"
+                    icon: "bug"
+                    href: "https://github.com/nessan/cmake/issues"
+                  - text: "Ask a Question"
+                    icon: "chat-right-text"
+                    href: "mailto:nzznfitz+gh@icloud.com"
+        tools:
+            - icon: github
+              href: "https://github.com/nessan/cmake"
+              text: GitHub repo
+
+    sidebar:
+        style: floating
+        type: light
+        background: light
+        align: left
+        collapse-level: 2
+        contents:
+            - text: "Overview"
+              file: pages/index.qmd
+            - text: "Build Hygiene"
+              file: pages/disable_in_source_builds.qmd
+            - text: "Picky Compiler"
+              file: pages/compiler_init.qmd
+            - text: "Small Executables"
+              file: pages/add_executables.qmd
+            - text: "Archive Targets"
+              file: pages/add_archive.qmd
+            - text: "FetchContent"
+              file: pages/fetch_content.qmd
+            - text: "External Headers"
+              file: pages/systematize.qmd
+editor:
+    markdown:
+        canonical: true

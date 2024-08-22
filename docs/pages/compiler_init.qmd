@@ -1,0 +1,70 @@
+---
+title: Initialize the Compiler to be Picky
+---
+
+## Introduction
+
+A call to `compiler_init(target)` sets some commonly used compiler flags for the `target`.
+
+::: {.callout-tip}
+# The aim is to detect poor code early
+Most of the flags this module sets control the warnings compilers will issue for "bad" code.
+:::
+
+## Rationale
+
+We want the compiler to issue warnings early and often during development.
+This function adds appropriate compiler flags to achieve just that.
+
+Valid flags vary by compiler.
+The ones supplied here cover the `gcc`, `clang`, and `Microsoft` and come from various sources on the net.
+
+We also add the `/Zc:preprocessor` flag for the `Microsoft` compiler.
+This flag forces it to use its newer cross-platform compatible preprocessor.
+
+## Usage
+
+When building `my_app`, you might add lines to the `CMakeLists.txt` file along the lines:
+
+```cmake
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+include(compiler_init)
+compiler_init(my_app)
+```
+
+Now, builds of `my_app` will get all sorts of warnings if the compiler sees anything that looks dubious.
+In fact, by default, warnings are treated as errors, and compilation will stop.
+This deliberate choice forces you to fix warnings early in the development cycle.
+You can turn off that behaviour by setting a variable --- see below.
+
+## Variables
+
+There are a couple of variables that change the behaviour of this function.
+
+1. If `WARNINGS_ARE_PICKY` is set to a “truthy” value, then the compiler is set up to be particularly picky.
+For `gcc` and `clang`, the `-Wall` and `-Wextra` flags are set, while the `/W4` flag is set for Microsoft.
+2. If `WARNINGS_ARE_ERRORS` is set to a “truthy” value, the compiler will treat warnings as errors and abort compilation when any are encountered.
+
+::: {.callout-important}
+# Picky by default!
+Both variables are `ON` by default!
+It is better to be picky from the start and be forced to deal with the warnings as they arise rather than skip them to be dealt with later.
+Getting a clean bill of health from several compilers is undoubtedly a sign of a healthy code base.
+Of course, it is also good to run your code through a linter of some sort.
+:::
+
+## Other Notes:
+
+1. This function works on a single target basis.
+Any compiler warning flags that are set for the target do not propagate.
+The exception is for `INTERFACE` targets, which are typically header-only libraries.
+If you call `compiler_init` for one of those, the warning flags propagate to any code that uses the library.
+2. Calling the function also sets the `CMAKE_EXPORT_COMPILE_COMMANDS` and `CMAKE_COLOR_DIAGNOSTICS` variables to `ON`.
+The former gets `CMake` to export all the compile commands to the file `compile_commands.json` in your build folder--editors like `VSCode` will use that file to locate header information properly and so on.
+The latter instructs `CMake` to ask the compiler to add colour to its output.
+1. This function will issue an error if it does not recognize the compiler you are using,
+
+::: {.callout-warning}
+# Microsoft
+We rarely use the Microsoft compiler, so the flags for that compiler may not be up-to-date or complete.
+:::

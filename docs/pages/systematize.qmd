@@ -1,0 +1,37 @@
+---
+title: Suppress Warnings from External Headers
+---
+
+## Introduction
+
+This module lets you treat a library's header files as system headers.
+
+We want to compile our code with a maximal set of compiler checks.
+We also treat all compiler warnings as errors, which forces us to clean our code early in the development cycle.
+See {compiler_init}.
+
+However, by default, these rather strict compiler flags also get applied to any imported header files from an external library.
+When we import a library into our project, we often receive compiler warnings from its header files.
+
+Of course, a lot of the warnings are not that important and often concern deprecated features that the library uses so it can support ancient compilers and so on.
+Ideally, all of these get cleaned up by conditional compilation.
+However, that is probably not immediately practical for a library you do not own.
+This leaves you with screen after screen of errors hiding the warnings you are interested in.
+
+One way to suppress all those warnings is to treat the imported header files as "system" header files.
+Compilers generally ignore warnings issued from system headers.
+
+## Usage
+
+Suppose `ExternalLib` is the external library we import into our project.
+`ExternalLib` has some potentially problematic header files in its include directory.
+
+Assuming the `systematize.cmake` file is in a top-level `cmake` directory, and you might invoke it as follows:
+
+```cmake
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+include(systematize)
+systematize(ExternalLib)
+```
+
+The `systematize` function adds the CMake `SYSTEM` attribute to the `ExternalLib`, including its header files, and compilers will then stop issuing warnings from that location.

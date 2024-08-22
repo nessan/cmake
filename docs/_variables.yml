@@ -1,0 +1,23 @@
+# Shortcuts and links used throughout the documentation.
+
+# Links to software tools, etc.``
+mit-license: "[MIT License](https://opensource.org/license/mit)"
+quarto: "[Quarto](https://quarto.org)"
+repo: "[repository](https://github.com/nessan/cmake)"
+docs: "[documentation](https://nessan.github.io/cmake)"
+email: "[email](mailto:nzznfitz+gh@icloud.com)"
+
+# Formatted links to CMake pages
+cmake: "[`CMake`](https://cmake.org)"
+module: "[`module`](https://cmake.org/cmake/help/book/mastering-cmake/chapter/Modules.html)"
+FetchContent: "[`FetchContent`](https://cmake.org/cmake/help/latest/module/FetchContent.html)"
+EXCLUDE_FROM_ALL: "[`EXCLUDE_FROM_ALL`](https://cmake.org/cmake/help/latest/prop_tgt/EXCLUDE_FROM_ALL.html)"
+CPM: "[`CPM`](https://github.com/cpm-cmake/CPM.cmake)"
+
+# Formatted links to all the library module pages
+add_archive: "[`add_archive`](/pages/add_archive.qmd)"
+add_executables: "[`add_executables`](/pages/add_executables.qmd)"
+compiler_init: "[`compiler_init`](/pages/compiler_init.qmd)"
+disable_in_source_builds: "[`disable_in_source_builds`](/pages/disable_in_source_builds.qmd)"
+fetch_content: "[`fetch_content`](/pages/fetch_content.qmd)"
+systematize: "[`systematize`](/pages/systematize.qmd)"
