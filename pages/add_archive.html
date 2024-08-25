@@ -77,6 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/quarto-contrib/admonitions-1.0.0/admonitions.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -113,6 +114,7 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-RDX9014Z7X', { 'anonymize_ip': true});
 </script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 <meta property="og:title" content="Create Archives – CMake Modules">
@@ -358,19 +360,13 @@ gtag('config', 'G-RDX9014Z7X', { 'anonymize_ip': true});
 </tbody>
 </table>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Available compression algorithms
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The archive uses the <code>CMake</code> native <code>tar</code> command. Browsing the <code>CMake</code> source code, that command seems to support <code>zip</code>, <code>7zip</code>, <code>gnutar</code>,<code>pax</code>, and <code>paxr</code> as possible compression formats.</p>
-</div>
-</div>
+<div class="admonition note">
+    <table><tbody><tr>
+    <td class="icon"> <i class="fa icon-note" title="Note"></i></td>
+    <td class="content">
+    
+The archive uses the <code>CMake</code> native <code>tar</code> command. Browsing the <code>CMake</code> source code, that command seems to support <code>zip</code>, <code>7zip</code>, <code>gnutar</code>,<code>pax</code>, and <code>paxr</code> as possible compression formats.
+</td></tr></tbody></table></div>
 </section>
 </section>
 <section id="rationale" class="level2">

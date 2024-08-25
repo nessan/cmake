@@ -77,6 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/quarto-contrib/admonitions-1.0.0/admonitions.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -113,6 +114,7 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-RDX9014Z7X', { 'anonymize_ip': true});
 </script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 <meta property="og:title" content="A Wrapper Around FetchContent – CMake Modules">
@@ -312,32 +314,20 @@ gtag('config', 'G-RDX9014Z7X', { 'anonymize_ip': true});
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">include</span>(fetch_content)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">fetch_content</span>(ExternalLib URL https:://github.com/.../ExternalLib.git ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This will essentially do the <code>FetchContent_Declare,</code> and <code>FetchContent_MakeAvailable</code> calls above but will also add several recommended options to those calls. In particular, it will tell <code>FetchContent</code> to check to see if the package is already available on the system, avoiding cloning any repo. It will also ensure that any repo clones done will be as shallow as possible to speed things up.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Liable to change
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This module will probably change in the future as <code>FetchContent</code> develops.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<code>CPM</code>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The CMake Package Manager <a href="https://github.com/cpm-cmake/CPM.cmake"><code>CPM</code></a> is a much fuller featured wrapper around <a href="https://cmake.org/cmake/help/latest/module/FetchContent.html"><code>FetchContent</code></a>.</p>
-</div>
-</div>
+<div class="admonition caution">
+    <table><tbody><tr>
+    <td class="icon"> <i class="fa icon-caution" title="Caution"></i></td>
+    <td class="content">
+    
+This module will probably change in the future as <code>FetchContent</code> develops.
+</td></tr></tbody></table></div>
+<div class="admonition note">
+    <table><tbody><tr>
+    <td class="icon"> <i class="fa icon-note" title="Note"></i></td>
+    <td class="content">
+    
+The CMake Package Manager <a href="https://github.com/cpm-cmake/CPM.cmake"><code>CPM</code></a> is a much fuller featured wrapper around <a href="https://cmake.org/cmake/help/latest/module/FetchContent.html"><code>FetchContent</code></a>.
+</td></tr></tbody></table></div>
 
 
 </section>

@@ -77,6 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/quarto-contrib/admonitions-1.0.0/admonitions.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -113,6 +114,7 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-RDX9014Z7X', { 'anonymize_ip': true});
 </script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 <meta property="og:title" content="Initialize the Compiler to be Picky – CMake Modules">
@@ -301,19 +303,14 @@ gtag('config', 'G-RDX9014Z7X', { 'anonymize_ip': true});
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>A call to <code>compiler_init(target)</code> sets some commonly used compiler flags for the <code>target</code>.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-The aim is to detect poor code early
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Most of the flags this module sets control the warnings compilers will issue for “bad” code.</p>
-</div>
-</div>
+<div class="admonition tip">
+    <table><tbody><tr>
+    <td class="icon"> <i class="fa icon-tip" title="Tip"></i></td>
+    <td class="content">
+    
+Most of the flags this module sets control the warnings compilers will issue for “bad” code.<br>
+The aim is detect poor code early!
+</td></tr></tbody></table></div>
 </section>
 <section id="rationale" class="level2">
 <h2 class="anchored" data-anchor-id="rationale">Rationale</h2>
@@ -336,19 +333,13 @@ The aim is to detect poor code early
 <li>If <code>WARNINGS_ARE_PICKY</code> is set to a “truthy” value, then the compiler is set up to be particularly picky. For <code>gcc</code> and <code>clang</code>, the <code>-Wall</code> and <code>-Wextra</code> flags are set, while the <code>/W4</code> flag is set for Microsoft.</li>
 <li>If <code>WARNINGS_ARE_ERRORS</code> is set to a “truthy” value, the compiler will treat warnings as errors and abort compilation when any are encountered.</li>
 </ol>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Picky by default!
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Both variables are <code>ON</code> by default! It is better to be picky from the start and be forced to deal with the warnings as they arise rather than skip them to be dealt with later. Getting a clean bill of health from several compilers is undoubtedly a sign of a healthy code base. Of course, it is also good to run your code through a linter of some sort.</p>
-</div>
-</div>
+<div class="admonition note">
+    <table><tbody><tr>
+    <td class="icon"> <i class="fa icon-note" title="Note"></i></td>
+    <td class="content">
+    
+Both variables are <code>ON</code> by default! It is better to be picky from the start and be forced to deal with the warnings as they arise rather than skip them to be dealt with later. Getting a clean bill of health from several compilers is undoubtedly a sign of a healthy code base. Of course, it is also good to run your code through a linter of some sort.
+</td></tr></tbody></table></div>
 </section>
 <section id="other-notes" class="level2">
 <h2 class="anchored" data-anchor-id="other-notes">Other Notes:</h2>
@@ -357,19 +348,13 @@ Picky by default!
 <li>Calling the function also sets the <code>CMAKE_EXPORT_COMPILE_COMMANDS</code> and <code>CMAKE_COLOR_DIAGNOSTICS</code> variables to <code>ON</code>. The former gets <code>CMake</code> to export all the compile commands to the file <code>compile_commands.json</code> in your build folder–editors like <code>VSCode</code> will use that file to locate header information properly and so on. The latter instructs <code>CMake</code> to ask the compiler to add colour to its output.</li>
 <li>This function will issue an error if it does not recognize the compiler you are using,</li>
 </ol>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Microsoft
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>We rarely use the Microsoft compiler, so the flags for that compiler may not be up-to-date or complete.</p>
-</div>
-</div>
+<div class="admonition caution">
+    <table><tbody><tr>
+    <td class="icon"> <i class="fa icon-caution" title="Caution"></i></td>
+    <td class="content">
+    
+We rarely use the Microsoft compiler, so the flags for that compiler may not be up-to-date or complete.
+</td></tr></tbody></table></div>
 
 
 </section>

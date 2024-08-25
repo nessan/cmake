@@ -81,7 +81,7 @@
     "href": "pages/add_archive.html#usage",
     "title": "Create Archives",
     "section": "Usage",
-    "text": "Usage\nAssuming the module file is in the top-level cmake directory, you might use the function as follows in your CMakeLists.txt file\nlist(APPEND CMAKE_MODULE_PATH \"${CMAKE_SOURCE_DIR}/cmake\")\ninclude(add_archive)\nadd_archive(LICENSE CMakeLists.txt source include)\nThis call will add a new target to the build called archive using all default values for the various parameters.\nInvoking that target will create a zipped archive file containing the arguments passed to the function. In this case, presumably, LICENSE and CMakeLists.txt are files, while source and include are directories.\n\nKeyword Arguments\n\n\n\n\n\n\n\n\n\nArgument\nDescription\nDefault Value\n\n\n\n\nVERBOSE\nSet to get some informative messages on configuration.\nOFF\n\n\nARCHIVE_BASENAME\nThe basename for the archive.\n${PROJECT_NAME}\n\n\nARCHIVE_FORMAT\nThe format for the archive.\nzip\n\n\nARCHIVE_TARGET\nThe name of the build target that creates the archive.\narchive\n\n\nARCHIVE_LOCATION\nWhere the archive is output to.\n${CMAKE_CURRENT_BINARY_DIR}\n\n\n\n\n\n\n\n\n\n\nAvailable compression algorithms\n\n\n\nThe archive uses the CMake native tar command. Browsing the CMake source code, that command seems to support zip, 7zip, gnutar,pax, and paxr as possible compression formats.",
+    "text": "Usage\nAssuming the module file is in the top-level cmake directory, you might use the function as follows in your CMakeLists.txt file\nlist(APPEND CMAKE_MODULE_PATH \"${CMAKE_SOURCE_DIR}/cmake\")\ninclude(add_archive)\nadd_archive(LICENSE CMakeLists.txt source include)\nThis call will add a new target to the build called archive using all default values for the various parameters.\nInvoking that target will create a zipped archive file containing the arguments passed to the function. In this case, presumably, LICENSE and CMakeLists.txt are files, while source and include are directories.\n\nKeyword Arguments\n\n\n\n\n\n\n\n\n\nArgument\nDescription\nDefault Value\n\n\n\n\nVERBOSE\nSet to get some informative messages on configuration.\nOFF\n\n\nARCHIVE_BASENAME\nThe basename for the archive.\n${PROJECT_NAME}\n\n\nARCHIVE_FORMAT\nThe format for the archive.\nzip\n\n\nARCHIVE_TARGET\nThe name of the build target that creates the archive.\narchive\n\n\nARCHIVE_LOCATION\nWhere the archive is output to.\n${CMAKE_CURRENT_BINARY_DIR}\n\n\n\n\n\n    \n     \n    \n    \nThe archive uses the CMake native tar command. Browsing the CMake source code, that command seems to support zip, 7zip, gnutar,pax, and paxr as possible compression formats.",
     "crumbs": [
       "Home",
       "Archive Targets"
@@ -114,7 +114,7 @@
     "href": "pages/compiler_init.html",
     "title": "Initialize the Compiler to be Picky",
     "section": "",
-    "text": "A call to compiler_init(target) sets some commonly used compiler flags for the target.\n\n\n\n\n\n\nThe aim is to detect poor code early\n\n\n\nMost of the flags this module sets control the warnings compilers will issue for “bad” code.",
+    "text": "A call to compiler_init(target) sets some commonly used compiler flags for the target.\n\n    \n     \n    \n    \nMost of the flags this module sets control the warnings compilers will issue for “bad” code.\nThe aim is detect poor code early!",
     "crumbs": [
       "Home",
       "Picky Compiler"
@@ -125,7 +125,7 @@
     "href": "pages/compiler_init.html#introduction",
     "title": "Initialize the Compiler to be Picky",
     "section": "",
-    "text": "A call to compiler_init(target) sets some commonly used compiler flags for the target.\n\n\n\n\n\n\nThe aim is to detect poor code early\n\n\n\nMost of the flags this module sets control the warnings compilers will issue for “bad” code.",
+    "text": "A call to compiler_init(target) sets some commonly used compiler flags for the target.\n\n    \n     \n    \n    \nMost of the flags this module sets control the warnings compilers will issue for “bad” code.\nThe aim is detect poor code early!",
     "crumbs": [
       "Home",
       "Picky Compiler"
@@ -158,7 +158,7 @@
     "href": "pages/compiler_init.html#variables",
     "title": "Initialize the Compiler to be Picky",
     "section": "Variables",
-    "text": "Variables\nThere are a couple of variables that change the behaviour of this function.\n\nIf WARNINGS_ARE_PICKY is set to a “truthy” value, then the compiler is set up to be particularly picky. For gcc and clang, the -Wall and -Wextra flags are set, while the /W4 flag is set for Microsoft.\nIf WARNINGS_ARE_ERRORS is set to a “truthy” value, the compiler will treat warnings as errors and abort compilation when any are encountered.\n\n\n\n\n\n\n\nPicky by default!\n\n\n\nBoth variables are ON by default! It is better to be picky from the start and be forced to deal with the warnings as they arise rather than skip them to be dealt with later. Getting a clean bill of health from several compilers is undoubtedly a sign of a healthy code base. Of course, it is also good to run your code through a linter of some sort.",
+    "text": "Variables\nThere are a couple of variables that change the behaviour of this function.\n\nIf WARNINGS_ARE_PICKY is set to a “truthy” value, then the compiler is set up to be particularly picky. For gcc and clang, the -Wall and -Wextra flags are set, while the /W4 flag is set for Microsoft.\nIf WARNINGS_ARE_ERRORS is set to a “truthy” value, the compiler will treat warnings as errors and abort compilation when any are encountered.\n\n\n    \n     \n    \n    \nBoth variables are ON by default! It is better to be picky from the start and be forced to deal with the warnings as they arise rather than skip them to be dealt with later. Getting a clean bill of health from several compilers is undoubtedly a sign of a healthy code base. Of course, it is also good to run your code through a linter of some sort.",
     "crumbs": [
       "Home",
       "Picky Compiler"
@@ -169,7 +169,7 @@
     "href": "pages/compiler_init.html#other-notes",
     "title": "Initialize the Compiler to be Picky",
     "section": "Other Notes:",
-    "text": "Other Notes:\n\nThis function works on a single target basis. Any compiler warning flags that are set for the target do not propagate. The exception is for INTERFACE targets, which are typically header-only libraries. If you call compiler_init for one of those, the warning flags propagate to any code that uses the library.\nCalling the function also sets the CMAKE_EXPORT_COMPILE_COMMANDS and CMAKE_COLOR_DIAGNOSTICS variables to ON. The former gets CMake to export all the compile commands to the file compile_commands.json in your build folder–editors like VSCode will use that file to locate header information properly and so on. The latter instructs CMake to ask the compiler to add colour to its output.\nThis function will issue an error if it does not recognize the compiler you are using,\n\n\n\n\n\n\n\nMicrosoft\n\n\n\nWe rarely use the Microsoft compiler, so the flags for that compiler may not be up-to-date or complete.",
+    "text": "Other Notes:\n\nThis function works on a single target basis. Any compiler warning flags that are set for the target do not propagate. The exception is for INTERFACE targets, which are typically header-only libraries. If you call compiler_init for one of those, the warning flags propagate to any code that uses the library.\nCalling the function also sets the CMAKE_EXPORT_COMPILE_COMMANDS and CMAKE_COLOR_DIAGNOSTICS variables to ON. The former gets CMake to export all the compile commands to the file compile_commands.json in your build folder–editors like VSCode will use that file to locate header information properly and so on. The latter instructs CMake to ask the compiler to add colour to its output.\nThis function will issue an error if it does not recognize the compiler you are using,\n\n\n    \n     \n    \n    \nWe rarely use the Microsoft compiler, so the flags for that compiler may not be up-to-date or complete.",
     "crumbs": [
       "Home",
       "Picky Compiler"
@@ -270,7 +270,7 @@
     "href": "pages/fetch_content.html#usage",
     "title": "A Wrapper Around FetchContent",
     "section": "Usage",
-    "text": "Usage\nAssuming the fetch_content.cmake file is located in a top-level cmake directory in the CMakeLists.txt file, you might use the function as follows:\nlist(APPEND CMAKE_MODULE_PATH \"${CMAKE_SOURCE_DIR}/cmake\")\ninclude(fetch_content)\nfetch_content(ExternalLib URL https:://github.com/.../ExternalLib.git ...)\nThis will essentially do the FetchContent_Declare, and FetchContent_MakeAvailable calls above but will also add several recommended options to those calls. In particular, it will tell FetchContent to check to see if the package is already available on the system, avoiding cloning any repo. It will also ensure that any repo clones done will be as shallow as possible to speed things up.\n\n\n\n\n\n\nLiable to change\n\n\n\nThis module will probably change in the future as FetchContent develops.\n\n\n\n\n\n\n\n\nCPM\n\n\n\nThe CMake Package Manager CPM is a much fuller featured wrapper around FetchContent.",
+    "text": "Usage\nAssuming the fetch_content.cmake file is located in a top-level cmake directory in the CMakeLists.txt file, you might use the function as follows:\nlist(APPEND CMAKE_MODULE_PATH \"${CMAKE_SOURCE_DIR}/cmake\")\ninclude(fetch_content)\nfetch_content(ExternalLib URL https:://github.com/.../ExternalLib.git ...)\nThis will essentially do the FetchContent_Declare, and FetchContent_MakeAvailable calls above but will also add several recommended options to those calls. In particular, it will tell FetchContent to check to see if the package is already available on the system, avoiding cloning any repo. It will also ensure that any repo clones done will be as shallow as possible to speed things up.\n\n    \n     \n    \n    \nThis module will probably change in the future as FetchContent develops.\n\n\n    \n     \n    \n    \nThe CMake Package Manager CPM is a much fuller featured wrapper around FetchContent.",
     "crumbs": [
       "Home",
       "FetchContent"
