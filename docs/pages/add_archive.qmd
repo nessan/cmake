@@ -35,11 +35,8 @@ Argument            | Description                                               
 
 : {.bordered .striped .hover .responsive tbl-colwidths="[20,60,20]"}
 
-::: {.callout-note}
-# Available compression algorithms
-The archive uses the `CMake` native `tar` command.
+NOTE: The archive uses the `CMake` native `tar` command.
 Browsing the `CMake` source code, that command seems to support `zip`, `7zip`, `gnutar`,`pax`, and `paxr` as possible compression formats.
-:::
 
 ## Rationale
 

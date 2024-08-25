@@ -34,12 +34,6 @@ This will essentially do the `FetchContent_Declare,` and `FetchContent_MakeAvail
 In particular, it will tell `FetchContent` to check to see if the package is already available on the system, avoiding cloning any repo.
 It will also ensure that any repo clones done will be as shallow as possible to speed things up.
 
-::: {.callout-warning}
-# Liable to change
-This module will probably change in the future as `FetchContent` develops.
-:::
+CAUTION: This module will probably change in the future as `FetchContent` develops.
 
-::: {.callout-note}
-# `CPM`
-The CMake Package Manager {CPM} is a much fuller featured wrapper around {FetchContent}.
-:::
+NOTE: The CMake Package Manager {CPM} is a much fuller featured wrapper around {FetchContent}.
