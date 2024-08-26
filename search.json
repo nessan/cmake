@@ -114,7 +114,7 @@
     "href": "pages/compiler_init.html",
     "title": "Initialize the Compiler to be Picky",
     "section": "",
-    "text": "A call to compiler_init(target) sets some commonly used compiler flags for the target.\n\n    \n     \n    \n    \nMost of the flags this module sets control the warnings compilers will issue for “bad” code.\nThe aim is detect poor code early!",
+    "text": "A call to compiler_init(target) sets some commonly used compiler flags for the target.\n\n    \n     \n    \n    \nMost of the flags this module sets control the warnings compilers will issue for “bad” code. The aim is detect poor code early!",
     "crumbs": [
       "Home",
       "Picky Compiler"
@@ -125,7 +125,7 @@
     "href": "pages/compiler_init.html#introduction",
     "title": "Initialize the Compiler to be Picky",
     "section": "",
-    "text": "A call to compiler_init(target) sets some commonly used compiler flags for the target.\n\n    \n     \n    \n    \nMost of the flags this module sets control the warnings compilers will issue for “bad” code.\nThe aim is detect poor code early!",
+    "text": "A call to compiler_init(target) sets some commonly used compiler flags for the target.\n\n    \n     \n    \n    \nMost of the flags this module sets control the warnings compilers will issue for “bad” code. The aim is detect poor code early!",
     "crumbs": [
       "Home",
       "Picky Compiler"
