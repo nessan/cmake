@@ -6,8 +6,7 @@ title: Initialize the Compiler to be Picky
 
 A call to `compiler_init(target)` sets some commonly used compiler flags for the `target`.
 
-TIP: Most of the flags this module sets control the warnings compilers will issue for "bad" code. \
-The aim is detect poor code early!
+TIP: Most of the flags this module sets control the warnings compilers will issue for "bad" code. The aim is detect poor code early!
 
 ## Rationale
 
