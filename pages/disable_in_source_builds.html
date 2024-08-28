@@ -297,7 +297,7 @@ gtag('config', 'G-RDX9014Z7X', { 'anonymize_ip': true});
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>A call to <code>disable_in_source_builds()</code> prohibits invocations of <code>cmake</code> in a project directory.</p>
+<p>Include <code>disable_in_source_builds.cmake</code> in your <code>CMakeLists.txt</code> file to prohibit invocation of <code>cmake</code> in the project directory.</p>
 </section>
 <section id="rationale" class="level2">
 <h2 class="anchored" data-anchor-id="rationale">Rationale</h2>
@@ -305,10 +305,8 @@ gtag('config', 'G-RDX9014Z7X', { 'anonymize_ip': true});
 <p>That way, the source tree is kept clean of object files, executables, library archives, etc., making it easy to clean everything up by deleting the entire build directory. It is also easy to create a rule for your source code control system that prevents checking all the ephemeral build artefacts into the code repository.</p>
 <p>This concept is now considered fundamental, and newer IDEs and build systems always enforce and never pollute the main source tree with any build artefacts.</p>
 <p>Of course, <code>CMake</code> is happy to work with out-of-source builds, and indeed, every guide you will ever read tells you on page 1 how to make sure to do just that. However, unfortunately, <code>CMake</code> also allows in-source builds where the object files, etc., can end up in the same spots as the source files.</p>
-<p>All modern <code>CMake</code> projects try to prevent that inadvertent use. This function does just that and is typically invoked very early in the <code>CMakeLists.txt</code> file. For example, very early on, it might have a few lines like:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cmake code-with-copy"><code class="sourceCode cmake"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">list</span>(<span class="ot">APPEND</span> <span class="dv">CMAKE_MODULE_PATH</span> <span class="st">"</span><span class="dv">${CMAKE_SOURCE_DIR}</span><span class="st">/cmake"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">include</span>(disable_in_source_builds)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">disable_in_source_builds</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>All modern <code>CMake</code> projects try to prevent that inadvertent use. This module does just that and is typically loaded very early in the <code>CMakeLists.txt</code> file. For example, if your <code>CMake</code> modules are in the <code>cmake</code> subdirectory you might have a line like:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cmake code-with-copy"><code class="sourceCode cmake"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">include</span>(cmake/disable_in_source_builds.cmake)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Now, if you try to invoke <code>cmake</code> and are not building out-of-source, the system will exit with a polite error message telling you exactly how to correct the situation.</p>
 
 

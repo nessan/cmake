@@ -180,7 +180,7 @@
     "href": "pages/disable_in_source_builds.html",
     "title": "Build Hygiene",
     "section": "",
-    "text": "A call to disable_in_source_builds() prohibits invocations of cmake in a project directory.",
+    "text": "Include disable_in_source_builds.cmake in your CMakeLists.txt file to prohibit invocation of cmake in the project directory.",
     "crumbs": [
       "Home",
       "Build Hygiene"
@@ -191,7 +191,7 @@
     "href": "pages/disable_in_source_builds.html#introduction",
     "title": "Build Hygiene",
     "section": "",
-    "text": "A call to disable_in_source_builds() prohibits invocations of cmake in a project directory.",
+    "text": "Include disable_in_source_builds.cmake in your CMakeLists.txt file to prohibit invocation of cmake in the project directory.",
     "crumbs": [
       "Home",
       "Build Hygiene"
@@ -202,7 +202,7 @@
     "href": "pages/disable_in_source_builds.html#rationale",
     "title": "Build Hygiene",
     "section": "Rationale",
-    "text": "Rationale\nThe best practice for build systems is to put all build artifacts into a separate build directory — typically located at the root of the project tree.\nThat way, the source tree is kept clean of object files, executables, library archives, etc., making it easy to clean everything up by deleting the entire build directory. It is also easy to create a rule for your source code control system that prevents checking all the ephemeral build artefacts into the code repository.\nThis concept is now considered fundamental, and newer IDEs and build systems always enforce and never pollute the main source tree with any build artefacts.\nOf course, CMake is happy to work with out-of-source builds, and indeed, every guide you will ever read tells you on page 1 how to make sure to do just that. However, unfortunately, CMake also allows in-source builds where the object files, etc., can end up in the same spots as the source files.\nAll modern CMake projects try to prevent that inadvertent use. This function does just that and is typically invoked very early in the CMakeLists.txt file. For example, very early on, it might have a few lines like:\nlist(APPEND CMAKE_MODULE_PATH \"${CMAKE_SOURCE_DIR}/cmake\")\ninclude(disable_in_source_builds)\ndisable_in_source_builds()\nNow, if you try to invoke cmake and are not building out-of-source, the system will exit with a polite error message telling you exactly how to correct the situation.",
+    "text": "Rationale\nThe best practice for build systems is to put all build artifacts into a separate build directory — typically located at the root of the project tree.\nThat way, the source tree is kept clean of object files, executables, library archives, etc., making it easy to clean everything up by deleting the entire build directory. It is also easy to create a rule for your source code control system that prevents checking all the ephemeral build artefacts into the code repository.\nThis concept is now considered fundamental, and newer IDEs and build systems always enforce and never pollute the main source tree with any build artefacts.\nOf course, CMake is happy to work with out-of-source builds, and indeed, every guide you will ever read tells you on page 1 how to make sure to do just that. However, unfortunately, CMake also allows in-source builds where the object files, etc., can end up in the same spots as the source files.\nAll modern CMake projects try to prevent that inadvertent use. This module does just that and is typically loaded very early in the CMakeLists.txt file. For example, if your CMake modules are in the cmake subdirectory you might have a line like:\ninclude(cmake/disable_in_source_builds.cmake)\nNow, if you try to invoke cmake and are not building out-of-source, the system will exit with a polite error message telling you exactly how to correct the situation.",
     "crumbs": [
       "Home",
       "Build Hygiene"
