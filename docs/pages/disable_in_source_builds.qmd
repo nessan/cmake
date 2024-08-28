@@ -4,7 +4,7 @@ title: Build Hygiene
 
 ## Introduction
 
-A call to `disable_in_source_builds()` prohibits invocations of `cmake` in a project directory.
+Include `disable_in_source_builds.cmake` in your `CMakeLists.txt` file to prohibit invocation of `cmake` in the project directory.
 
 ## Rationale
 
@@ -19,13 +19,11 @@ Of course, `CMake` is happy to work with out-of-source builds, and indeed, every
 However, unfortunately, `CMake` also allows in-source builds where the object files, etc., can end up in the same spots as the source files.
 
 All modern `CMake` projects try to prevent that inadvertent use.
-This function does just that and is typically invoked very early in the `CMakeLists.txt` file.
-For example, very early on, it might have a few lines like:
+This module does just that and is typically loaded very early in the `CMakeLists.txt` file.
+For example, if your `CMake` modules are in the `cmake` subdirectory you might have a line like:
 
 ```cmake
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
-include(disable_in_source_builds)
-disable_in_source_builds()
+include(cmake/disable_in_source_builds.cmake)
 ```
 
 Now, if you try to invoke `cmake` and are not building out-of-source, the system will exit with a polite error message telling you exactly how to correct the situation.
