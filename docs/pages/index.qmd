@@ -3,7 +3,6 @@ title: CMake Modules
 ---
 
 This repository has some modules for the {cmake} build system.
-Each module is entirely stand-alone, so you can copy any file of interest directly into your project and use it like any other CMake {module}.
 
 ## Available Modules
 
@@ -11,6 +10,7 @@ Module                     | Description
 -------------------------- | -----------
 {disable_in_source_builds} | Enforces build hygiene.
 {compiler_init}            | Initializes the compiler to be picky.
+{doxytest}                 | Extracts tests from header file comments and creates targets for each resulting test file.
 {add_executables}          | Adds targets for many small one-file executables.
 {add_archive}              | Adds a target to create an archive of some files/directories.
 {fetch_content}            | A small wrapper around the standard {FetchContent} module.
@@ -21,6 +21,9 @@ Module                     | Description
 
 The modules are stand-alone, so you can copy any file of interest directly into your project and use it like any other `CMake` module.
 By convention, one puts modules like these in a top-level subdirectory called `cmake`.
+
+The `doxytest` module needs to be paired with the `doxytest.py` script in the same directory.
+See the {doxytest} website for more details.
 
 ## Usage
 

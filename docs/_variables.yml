@@ -1,11 +1,16 @@
 # Shortcuts and links used throughout the documentation.
 
-# Links to software tools, etc.``
+# Top-level links
 mit-license: "[MIT License](https://opensource.org/license/mit)"
 quarto: "[Quarto](https://quarto.org)"
 repo: "[repository](https://github.com/nessan/cmake)"
 docs: "[documentation](https://nessan.github.io/cmake)"
 email: "[email](mailto:nzznfitz+gh@icloud.com)"
+
+# Links to software tools, etc.
+rust: "[Rust](https://www.rust-lang.org)"
+doctests: "[doctests](https://doc.rust-lang.org/rustdoc/write-documentation/documentation-tests.html)"
+doxygen: "[Doxygen](https://www.doxygen.nl)"
 
 # Formatted links to CMake pages
 cmake: "[`CMake`](https://cmake.org)"
@@ -19,5 +24,7 @@ add_archive: "[`add_archive`](/pages/add_archive.qmd)"
 add_executables: "[`add_executables`](/pages/add_executables.qmd)"
 compiler_init: "[`compiler_init`](/pages/compiler_init.qmd)"
 disable_in_source_builds: "[`disable_in_source_builds`](/pages/disable_in_source_builds.qmd)"
+doxytest: "[`doxytest`](https://nessan.github.io/doxytest/)"
+doxytest.py: "[`doxytest.py`](https://nessan.github.io/doxytest/)"
 fetch_content: "[`fetch_content`](/pages/fetch_content.qmd)"
 systematize: "[`systematize`](/pages/systematize.qmd)"

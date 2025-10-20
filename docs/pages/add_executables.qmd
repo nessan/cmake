@@ -4,14 +4,17 @@ title: Add Targets for lots of Small Executables
 
 ## Introduction
 
-`add_executables(directory,...)` walks through a directory of source files and adds targets to build each one and each group into executables.
+`add_executables(PATH [PATH ...] [LIBRARIES <lib1> <lib2> ...])` processes source files found in the provided path arguments and generates corresponding executable targets.
 
-To use this function, we expect each file in the directory to be compiled into a separate executable.
+The path arguments can be directories or individual source files.
+If a directory is provided, the function will process all the source files found in the directory and its subdirectories.
+Source files are assumed to have a supported C/C++ extension (`.c`, `.cc`, `.cxx`, `.cpp`, `.C`, `.c++`).
 
-For example, if the directory has a file `Foo.cpp, the function will create a target Foo that compiles Foo.cpp and links the object file to any trailing arguments, which are generally libraries.
+To use this function, we expect each source file found in the provided paths to generate a standalone executable program (so `Foo.cpp` will generate an executable called `Foo`).
 
-Moreover, if the source files in the directory follow a simple sequential naming scheme, the function will also add some convenience targets that simultaneously build whole groups of executables.
-For example, suppose the project looks like:
+For example, if we pass a directory that has a file `Foo.cpp`, the function will create a target `Foo` that compiles `Foo.cpp` and links the object file to the libraries from the `LIBRARIES` argument.
+
+Suppose the project looks like:
 
 ```sh
 project/
@@ -32,10 +35,9 @@ and your `CMakeLists.txt` file has some lines like
 ```cmake
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 include(add_executables)
-add_executables(examples ...)
+add_executables(examples LIBRARIES nlohmann_json::nlohmann_json)
 ```
-then `CMake` will create individual targets for `Bar01`, `Bar02`, `Bar03`, `Foo01`, and `Foo02`.
-It will also create a convenience target `Bar` that expands to `Bar01`, `Bar02`, and `Bar03`, another convenience target `Foo` that expands to `Foo01`, and `Foo02`, and finally, a target `examples` that expands to _all_ the individual targets.
+then `CMake` will create individual targets for `Bar01`, `Bar02`, `Bar03`, `Foo01`, and `Foo02` and link them to the library `nlohmann_json`.
 
 ## Rationale
 
@@ -43,12 +45,3 @@ Library developers often develop an extensive set of simple command-line tools t
 This is how one ends up with a directory like the `examples` above.
 
 The `add_executables` function makes it easy to grow that collection of executables without worrying about adding them to some `CMakeLists.txt` file.
-It also makes building some of those executables as a group easy.
-
-## Notes
-
-1. The first argument to `add_executables(...)` must be a directory.
-All other trailing arguments are assumed to be libraries to which the executables must be linked.
-2. The created targets have the `CMake` {EXCLUDE_FROM_ALL} attribute set.
-3. The module also defines other helper functions that might be useful elsewhere.
-4. Currently, the module only handles `.cpp` and `.c` files in the passed directory argument.

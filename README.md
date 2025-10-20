@@ -1,15 +1,16 @@
 # README
 
-This repository has some modules for the [`CMake`](https://cmake.org/documentation) build system. Each module is entirely stand-alone, so you can copy any file of interest directly into your project and use it like any other [`CMake` module](https://cmake.org/cmake/help/book/mastering-cmake/chapter/Modules.html).
+This repository has some modules for the [`CMake`](https://cmake.org/documentation) build system. Each module is stand-alone, so you can copy any file of interest directly into your project and use it like any other [`CMake` module](https://cmake.org/cmake/help/book/mastering-cmake/chapter/Modules.html).
 
 ## Available Modules
 
-The modules are in the top-level subdirectory called `modules`.
+The modules are in the top-level subdirectory called `cmake`.
 
 | Module                     | Description                                                                                                                        |
 | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | `disable_in_source_builds` | A classic that enforces best practices and prevents any in-source builds.                                                          |
 | `compiler_init`            | Sets several commonly used compiler flags, particularly warning flags.                                                             |
+| `doxytest`                 | Extracts tests from header file comments and creates targets for each resulting test file (uses the `doxytest.py` script).         |
 | `add_executables`          | Adds targets for lots of small one-file executables.                                                                               |
 | `add_archive`              | Adds a target to create an archive of some files/directories.                                                                      |
 | `fetch_content`            | A small wrapper around the standard `CMake` module [`FetchContent`](https://cmake.org/cmake/help/latest/module/FetchContent.html). |
@@ -17,7 +18,7 @@ The modules are in the top-level subdirectory called `modules`.
 
 ## Installation
 
-The modules are stand-alone, so you can copy any file of interest directly into your project and use it like any other `CMake` module. By convention, one puts modules like these in a top-level subdirectory called `cmake`.
+The modules are stand-alone, so you can copy any of interest directly into your project and use it like any other `CMake` module (the `doxytest` module needs to be paired with the `doxytest.py` script in the same directory). By convention, one puts modules like these in a top-level subdirectory called `cmake`.
 
 ## Usage
 
@@ -33,12 +34,12 @@ disable_in_source_builds()
 
 ## Documentation
 
-You can read the project's documentation [here](https://nessan.github.io/cmake).
+You can read the project's [documentation](https://nessan.github.io/cmake).
 We used the static website generator [Quarto](https://quarto.org) to construct the documentation site.
 
 ### Contact
 
-You can contact me by email [here](mailto:nzznfitz+gh@icloud.com).
+You can contact me by [email](mailto:nzznfitz+gh@icloud.com).
 
 ### Copyright and License
 
