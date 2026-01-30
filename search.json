@@ -1,43 +1,10 @@
 [
   {
-    "objectID": "pages/disable_in_source_builds.html",
-    "href": "pages/disable_in_source_builds.html",
-    "title": "Build Hygiene",
-    "section": "",
-    "text": "Include disable_in_source_builds.cmake in your CMakeLists.txt file to prohibit invocation of cmake in the project directory.",
-    "crumbs": [
-      "Home",
-      "Build Hygiene"
-    ]
-  },
-  {
-    "objectID": "pages/disable_in_source_builds.html#introduction",
-    "href": "pages/disable_in_source_builds.html#introduction",
-    "title": "Build Hygiene",
-    "section": "",
-    "text": "Include disable_in_source_builds.cmake in your CMakeLists.txt file to prohibit invocation of cmake in the project directory.",
-    "crumbs": [
-      "Home",
-      "Build Hygiene"
-    ]
-  },
-  {
-    "objectID": "pages/disable_in_source_builds.html#rationale",
-    "href": "pages/disable_in_source_builds.html#rationale",
-    "title": "Build Hygiene",
-    "section": "Rationale",
-    "text": "Rationale\nThe best practice for build systems is to put all build artifacts into a separate build directory — typically located at the root of the project tree.\nThat way, the source tree is kept clean of object files, executables, library archives, etc., making it easy to clean everything up by deleting the entire build directory. It is also easy to create a rule for your source code control system that prevents checking all the ephemeral build artefacts into the code repository.\nThis concept is now considered fundamental, and newer IDEs and build systems always enforce and never pollute the main source tree with any build artefacts.\nOf course, CMake is happy to work with out-of-source builds, and indeed, every guide you will ever read tells you on page 1 how to make sure to do just that. However, unfortunately, CMake also allows in-source builds where the object files, etc., can end up in the same spots as the source files.\nAll modern CMake projects try to prevent that inadvertent use. This module does just that and is typically loaded very early in the CMakeLists.txt file. For example, if your CMake modules are in the cmake subdirectory you might have a line like:\ninclude(cmake/disable_in_source_builds.cmake)\nNow, if you try to invoke cmake and are not building out-of-source, the system will exit with a polite error message telling you exactly how to correct the situation.",
-    "crumbs": [
-      "Home",
-      "Build Hygiene"
-    ]
-  },
-  {
     "objectID": "pages/add_executables.html",
     "href": "pages/add_executables.html",
     "title": "Add Targets for lots of Small Executables",
     "section": "",
-    "text": "add_executables(PATH [PATH ...] [LIBRARIES &lt;lib1&gt; &lt;lib2&gt; ...]) processes source files found in the provided path arguments and generates corresponding executable targets.\nThe path arguments can be directories or individual source files. If a directory is provided, the function will process all the source files found in the directory and its subdirectories. Source files are assumed to have a supported C/C++ extension (.c, .cc, .cxx, .cpp, .C, .c++).\nTo use this function, we expect each source file found in the provided paths to generate a standalone executable program (so Foo.cpp will generate an executable called Foo).\nFor example, if we pass a directory that has a file Foo.cpp, the function will create a target Foo that compiles Foo.cpp and links the object file to the libraries from the LIBRARIES argument.\nSuppose the project looks like:\nproject/\n├── .git\n├── CMakeLists.txt\n├── cmake\n│   └── add_executables.cmake\n├── examples\n│   ├── Bar01.cpp\n│   ├── Bar02.cpp\n│   ├── Bar03.cpp\n│   ├── Foo01.cpp\n│   └── Foo02.cpp\n└── ...\nand your CMakeLists.txt file has some lines like\nlist(APPEND CMAKE_MODULE_PATH \"${CMAKE_SOURCE_DIR}/cmake\")\ninclude(add_executables)\nadd_executables(examples LIBRARIES nlohmann_json::nlohmann_json)\nthen CMake will create individual targets for Bar01, Bar02, Bar03, Foo01, and Foo02 and link them to the library nlohmann_json.",
+    "text": "This cmake module provides a function add_executables that simplifies the process of adding multiple small executable targets to a CMake project. It is particularly useful for projects that include a large number of example programs or test utilities, where each executable is defined in its own source file.",
     "crumbs": [
       "Home",
       "Small Executables"
@@ -48,7 +15,29 @@
     "href": "pages/add_executables.html#introduction",
     "title": "Add Targets for lots of Small Executables",
     "section": "",
-    "text": "add_executables(PATH [PATH ...] [LIBRARIES &lt;lib1&gt; &lt;lib2&gt; ...]) processes source files found in the provided path arguments and generates corresponding executable targets.\nThe path arguments can be directories or individual source files. If a directory is provided, the function will process all the source files found in the directory and its subdirectories. Source files are assumed to have a supported C/C++ extension (.c, .cc, .cxx, .cpp, .C, .c++).\nTo use this function, we expect each source file found in the provided paths to generate a standalone executable program (so Foo.cpp will generate an executable called Foo).\nFor example, if we pass a directory that has a file Foo.cpp, the function will create a target Foo that compiles Foo.cpp and links the object file to the libraries from the LIBRARIES argument.\nSuppose the project looks like:\nproject/\n├── .git\n├── CMakeLists.txt\n├── cmake\n│   └── add_executables.cmake\n├── examples\n│   ├── Bar01.cpp\n│   ├── Bar02.cpp\n│   ├── Bar03.cpp\n│   ├── Foo01.cpp\n│   └── Foo02.cpp\n└── ...\nand your CMakeLists.txt file has some lines like\nlist(APPEND CMAKE_MODULE_PATH \"${CMAKE_SOURCE_DIR}/cmake\")\ninclude(add_executables)\nadd_executables(examples LIBRARIES nlohmann_json::nlohmann_json)\nthen CMake will create individual targets for Bar01, Bar02, Bar03, Foo01, and Foo02 and link them to the library nlohmann_json.",
+    "text": "This cmake module provides a function add_executables that simplifies the process of adding multiple small executable targets to a CMake project. It is particularly useful for projects that include a large number of example programs or test utilities, where each executable is defined in its own source file.",
+    "crumbs": [
+      "Home",
+      "Small Executables"
+    ]
+  },
+  {
+    "objectID": "pages/add_executables.html#usage",
+    "href": "pages/add_executables.html#usage",
+    "title": "Add Targets for lots of Small Executables",
+    "section": "Usage",
+    "text": "Usage\nThe function signature is as follows:\nadd_executables(PATH [PATH ...]\n                [LIBRARIES &lt;lib1&gt; &lt;lib2&gt; ...]\n                [COMBINED_TARGET [optional_target_name (default: \"all_examples\")]] )\nThis processes source files found in the provided path arguments and generates corresponding executable targets.\nThe path arguments can be directories or individual source files. If a directory is provided, the function will process all the source files found in the directory and its subdirectories. Source files are assumed to have a supported C/C++ extension (.c, .cc, .cxx, .cpp, .C, .c++).\nTo use this function, we expect each source file found in the provided paths to generate a standalone executable program (so Foo.cpp will generate an executable called Foo).\nFor example, if we pass a directory that has a file Foo.cpp, the function will create a target Foo that compiles Foo.cpp and links the object file to the libraries from the LIBRARIES argument.\nSuppose the project looks like:\nproject/\n├── .git\n├── CMakeLists.txt\n├── cmake\n│   └── add_executables.cmake\n├── examples\n│   ├── Bar01.cpp\n│   ├── Bar02.cpp\n│   ├── Bar03.cpp\n│   ├── Foo01.cpp\n│   └── Foo02.cpp\n└── ...\nand your CMakeLists.txt file has some lines like\nlist(APPEND CMAKE_MODULE_PATH \"${CMAKE_SOURCE_DIR}/cmake\")\ninclude(add_executables)\nadd_executables(examples\n                LIBRARIES nlohmann_json::nlohmann_json)\nthen CMake will create individual targets for Bar01, Bar02, Bar03, Foo01, and Foo02 and link them to the library nlohmann_json.",
+    "crumbs": [
+      "Home",
+      "Small Executables"
+    ]
+  },
+  {
+    "objectID": "pages/add_executables.html#combined-target",
+    "href": "pages/add_executables.html#combined-target",
+    "title": "Add Targets for lots of Small Executables",
+    "section": "Combined Target",
+    "text": "Combined Target\nThe combined target is useful when you want to build all the executables at once from a single command.\nIf the optional COMBINED_TARGET &lt;target_name&gt; argument is provided, the function will also create a target with the name &lt;target_name&gt; that depends on all the individual executable targets created from the source files. The &lt;target_name&gt; is optional, and if not provided, it defaults to all_examples.\n\n    \n     \n    \n    \nThe combined target is a utility, meaning you can use it to build all the executables from one command but it isn’t an actual executable itself.\n\nThe above example can be modified to create a combined target called all_tools like this:\nadd_executables(examples\n                LIBRARIES nlohmann_json::nlohmann_json\n                COMBINED_TARGET all_tools)\nNow, running cmake --build . --target all_tools will build all the individual executables found in the examples directory.",
     "crumbs": [
       "Home",
       "Small Executables"
@@ -63,39 +52,6 @@
     "crumbs": [
       "Home",
       "Small Executables"
-    ]
-  },
-  {
-    "objectID": "pages/fetch_content.html",
-    "href": "pages/fetch_content.html",
-    "title": "A Wrapper Around FetchContent",
-    "section": "",
-    "text": "fetch_content(...) is a wrapper around the CMake module FetchContent\nThat standard module is a tool to pull a code base or library from a remote repo into a project that will use it.\nFor example, the consumer of a remote library might have some lines in their CMakeLists.txt file like these:\ninclude(FetchContent)\nFetchContent_Declare(ExternalLib URL https:://github.com/.../ExternalLib.git ...)\nFetchContent_MakeAvailable(ExternalLib)\nThose trailing …’s in that first FetchContent_Declare call represent the many options that function can have. Some of those options should be the default. Adding those defaults is the primary purpose of fetch_content.",
-    "crumbs": [
-      "Home",
-      "FetchContent"
-    ]
-  },
-  {
-    "objectID": "pages/fetch_content.html#introduction",
-    "href": "pages/fetch_content.html#introduction",
-    "title": "A Wrapper Around FetchContent",
-    "section": "",
-    "text": "fetch_content(...) is a wrapper around the CMake module FetchContent\nThat standard module is a tool to pull a code base or library from a remote repo into a project that will use it.\nFor example, the consumer of a remote library might have some lines in their CMakeLists.txt file like these:\ninclude(FetchContent)\nFetchContent_Declare(ExternalLib URL https:://github.com/.../ExternalLib.git ...)\nFetchContent_MakeAvailable(ExternalLib)\nThose trailing …’s in that first FetchContent_Declare call represent the many options that function can have. Some of those options should be the default. Adding those defaults is the primary purpose of fetch_content.",
-    "crumbs": [
-      "Home",
-      "FetchContent"
-    ]
-  },
-  {
-    "objectID": "pages/fetch_content.html#usage",
-    "href": "pages/fetch_content.html#usage",
-    "title": "A Wrapper Around FetchContent",
-    "section": "Usage",
-    "text": "Usage\nAssuming the fetch_content.cmake file is located in a top-level cmake directory in the CMakeLists.txt file, you might use the function as follows:\nlist(APPEND CMAKE_MODULE_PATH \"${CMAKE_SOURCE_DIR}/cmake\")\ninclude(fetch_content)\nfetch_content(ExternalLib URL https:://github.com/.../ExternalLib.git ...)\nThis will essentially do the FetchContent_Declare, and FetchContent_MakeAvailable calls above but will also add several recommended options to those calls. In particular, it will tell FetchContent to check to see if the package is already available on the system, avoiding cloning any repo. It will also ensure that any repo clones done will be as shallow as possible to speed things up.\n\n    \n     \n    \n    \nThis module will probably change in the future as FetchContent develops.\n\n\n    \n     \n    \n    \nThe CMake Package Manager CPM is a much fuller featured wrapper around FetchContent.",
-    "crumbs": [
-      "Home",
-      "FetchContent"
     ]
   },
   {
@@ -154,71 +110,36 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "CMake Modules",
+    "objectID": "pages/disable_in_source_builds.html",
+    "href": "pages/disable_in_source_builds.html",
+    "title": "Build Hygiene",
     "section": "",
-    "text": "This repository has some modules for the CMake build system."
-  },
-  {
-    "objectID": "index.html#available-modules",
-    "href": "index.html#available-modules",
-    "title": "CMake Modules",
-    "section": "Available Modules",
-    "text": "Available Modules\n\n\n\n\n\n\n\n\nModule\nDescription\n\n\n\n\ndisable_in_source_builds\nEnforces build hygiene.\n\n\ncompiler_init\nInitializes the compiler to be picky.\n\n\ndoxytest\nExtracts tests from header file comments and creates targets for each resulting test file.\n\n\nadd_executables\nAdds targets for many small one-file executables.\n\n\nadd_archive\nAdds a target to create an archive of some files/directories.\n\n\nfetch_content\nA small wrapper around the standard FetchContent module.\n\n\nsystematize\nTreat the header files for an imported library as “system” includes."
-  },
-  {
-    "objectID": "index.html#installation",
-    "href": "index.html#installation",
-    "title": "CMake Modules",
-    "section": "Installation",
-    "text": "Installation\nThe modules are stand-alone, so you can copy any file of interest directly into your project and use it like any other CMake module. By convention, one puts modules like these in a top-level subdirectory called cmake.\nThe doxytest module needs to be paired with the doxytest.py script in the same directory. See the doxytest website for more details."
-  },
-  {
-    "objectID": "index.html#usage",
-    "href": "index.html#usage",
-    "title": "CMake Modules",
-    "section": "Usage",
-    "text": "Usage\nHowever you get the modules, you use them by letting CMake know where they are, including the particular ones of interest, and invoking the corresponding function.\nFor example, if you have copied the files into a top-level subdirectory cmake, then your CMakeLists.txt file might include some lines like:\nlist(APPEND CMAKE_MODULE_PATH \"${CMAKE_SOURCE_DIR}/cmake\")\ninclude(disable_in_source_builds)\ndisable_in_source_builds()"
-  },
-  {
-    "objectID": "index.html#documentation",
-    "href": "index.html#documentation",
-    "title": "CMake Modules",
-    "section": "Documentation",
-    "text": "Documentation\nHere is a link to the project’s source code repository.\nThis documentation site was constructed using the static website generator Quarto.\n\nContact\nYou can contact me by email\n\n\nCopyright and License\nCopyright (c) 2022-present Nessan Fitzmaurice.\nYou can use this software under the MIT License"
-  },
-  {
-    "objectID": "pages/systematize.html",
-    "href": "pages/systematize.html",
-    "title": "Suppress Warnings from External Headers",
-    "section": "",
-    "text": "This module lets you treat a library’s header files as system headers.\nWe want to compile our code with a maximal set of compiler checks. We also treat all compiler warnings as errors, which forces us to clean our code early in the development cycle. See compiler_init.\nHowever, by default, these rather strict compiler flags also get applied to any imported header files from an external library. When we import a library into our project, we often receive compiler warnings from its header files.\nOf course, a lot of the warnings are not that important and often concern deprecated features that the library uses so it can support ancient compilers and so on. Ideally, all of these get cleaned up by conditional compilation. However, that is probably not immediately practical for a library you do not own. This leaves you with screen after screen of errors hiding the warnings you are interested in.\nOne way to suppress all those warnings is to treat the imported header files as “system” header files. Compilers generally ignore warnings issued from system headers.",
+    "text": "Include disable_in_source_builds.cmake in your CMakeLists.txt file to prohibit invocation of cmake in the project directory.",
     "crumbs": [
       "Home",
-      "External Headers"
+      "Build Hygiene"
     ]
   },
   {
-    "objectID": "pages/systematize.html#introduction",
-    "href": "pages/systematize.html#introduction",
-    "title": "Suppress Warnings from External Headers",
+    "objectID": "pages/disable_in_source_builds.html#introduction",
+    "href": "pages/disable_in_source_builds.html#introduction",
+    "title": "Build Hygiene",
     "section": "",
-    "text": "This module lets you treat a library’s header files as system headers.\nWe want to compile our code with a maximal set of compiler checks. We also treat all compiler warnings as errors, which forces us to clean our code early in the development cycle. See compiler_init.\nHowever, by default, these rather strict compiler flags also get applied to any imported header files from an external library. When we import a library into our project, we often receive compiler warnings from its header files.\nOf course, a lot of the warnings are not that important and often concern deprecated features that the library uses so it can support ancient compilers and so on. Ideally, all of these get cleaned up by conditional compilation. However, that is probably not immediately practical for a library you do not own. This leaves you with screen after screen of errors hiding the warnings you are interested in.\nOne way to suppress all those warnings is to treat the imported header files as “system” header files. Compilers generally ignore warnings issued from system headers.",
+    "text": "Include disable_in_source_builds.cmake in your CMakeLists.txt file to prohibit invocation of cmake in the project directory.",
     "crumbs": [
       "Home",
-      "External Headers"
+      "Build Hygiene"
     ]
   },
   {
-    "objectID": "pages/systematize.html#usage",
-    "href": "pages/systematize.html#usage",
-    "title": "Suppress Warnings from External Headers",
-    "section": "Usage",
-    "text": "Usage\nSuppose ExternalLib is the external library we import into our project. ExternalLib has some potentially problematic header files in its include directory.\nAssuming the systematize.cmake file is in a top-level cmake directory, and you might invoke it as follows:\nlist(APPEND CMAKE_MODULE_PATH \"${CMAKE_SOURCE_DIR}/cmake\")\ninclude(systematize)\nsystematize(ExternalLib)\nThe systematize function adds the CMake SYSTEM attribute to the ExternalLib, including its header files, and compilers will then stop issuing warnings from that location.",
+    "objectID": "pages/disable_in_source_builds.html#rationale",
+    "href": "pages/disable_in_source_builds.html#rationale",
+    "title": "Build Hygiene",
+    "section": "Rationale",
+    "text": "Rationale\nThe best practice for build systems is to put all build artifacts into a separate build directory — typically located at the root of the project tree.\nThat way, the source tree is kept clean of object files, executables, library archives, etc., making it easy to clean everything up by deleting the entire build directory. It is also easy to create a rule for your source code control system that prevents checking all the ephemeral build artefacts into the code repository.\nThis concept is now considered fundamental, and newer IDEs and build systems always enforce and never pollute the main source tree with any build artefacts.\nOf course, CMake is happy to work with out-of-source builds, and indeed, every guide you will ever read tells you on page 1 how to make sure to do just that. However, unfortunately, CMake also allows in-source builds where the object files, etc., can end up in the same spots as the source files.\nAll modern CMake projects try to prevent that inadvertent use. This module does just that and is typically loaded very early in the CMakeLists.txt file. For example, if your CMake modules are in the cmake subdirectory you might have a line like:\ninclude(cmake/disable_in_source_builds.cmake)\nNow, if you try to invoke cmake and are not building out-of-source, the system will exit with a polite error message telling you exactly how to correct the situation.",
     "crumbs": [
       "Home",
-      "External Headers"
+      "Build Hygiene"
     ]
   },
   {
@@ -275,6 +196,41 @@
       "Home",
       "Overview"
     ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "CMake Modules",
+    "section": "",
+    "text": "This repository has some modules for the CMake build system."
+  },
+  {
+    "objectID": "index.html#available-modules",
+    "href": "index.html#available-modules",
+    "title": "CMake Modules",
+    "section": "Available Modules",
+    "text": "Available Modules\n\n\n\n\n\n\n\n\nModule\nDescription\n\n\n\n\ndisable_in_source_builds\nEnforces build hygiene.\n\n\ncompiler_init\nInitializes the compiler to be picky.\n\n\ndoxytest\nExtracts tests from header file comments and creates targets for each resulting test file.\n\n\nadd_executables\nAdds targets for many small one-file executables.\n\n\nadd_archive\nAdds a target to create an archive of some files/directories.\n\n\nfetch_content\nA small wrapper around the standard FetchContent module.\n\n\nsystematize\nTreat the header files for an imported library as “system” includes."
+  },
+  {
+    "objectID": "index.html#installation",
+    "href": "index.html#installation",
+    "title": "CMake Modules",
+    "section": "Installation",
+    "text": "Installation\nThe modules are stand-alone, so you can copy any file of interest directly into your project and use it like any other CMake module. By convention, one puts modules like these in a top-level subdirectory called cmake.\nThe doxytest module needs to be paired with the doxytest.py script in the same directory. See the doxytest website for more details."
+  },
+  {
+    "objectID": "index.html#usage",
+    "href": "index.html#usage",
+    "title": "CMake Modules",
+    "section": "Usage",
+    "text": "Usage\nHowever you get the modules, you use them by letting CMake know where they are, including the particular ones of interest, and invoking the corresponding function.\nFor example, if you have copied the files into a top-level subdirectory cmake, then your CMakeLists.txt file might include some lines like:\nlist(APPEND CMAKE_MODULE_PATH \"${CMAKE_SOURCE_DIR}/cmake\")\ninclude(disable_in_source_builds)\ndisable_in_source_builds()"
+  },
+  {
+    "objectID": "index.html#documentation",
+    "href": "index.html#documentation",
+    "title": "CMake Modules",
+    "section": "Documentation",
+    "text": "Documentation\nHere is a link to the project’s source code repository.\nThis documentation site was constructed using the static website generator Quarto.\n\nContact\nYou can contact me by email\n\n\nCopyright and License\nCopyright (c) 2022-present Nessan Fitzmaurice.\nYou can use this software under the MIT License"
   },
   {
     "objectID": "pages/compiler_init.html",
@@ -340,6 +296,72 @@
     "crumbs": [
       "Home",
       "Picky Compiler"
+    ]
+  },
+  {
+    "objectID": "pages/systematize.html",
+    "href": "pages/systematize.html",
+    "title": "Suppress Warnings from External Headers",
+    "section": "",
+    "text": "This module lets you treat a library’s header files as system headers.\nWe want to compile our code with a maximal set of compiler checks. We also treat all compiler warnings as errors, which forces us to clean our code early in the development cycle. See compiler_init.\nHowever, by default, these rather strict compiler flags also get applied to any imported header files from an external library. When we import a library into our project, we often receive compiler warnings from its header files.\nOf course, a lot of the warnings are not that important and often concern deprecated features that the library uses so it can support ancient compilers and so on. Ideally, all of these get cleaned up by conditional compilation. However, that is probably not immediately practical for a library you do not own. This leaves you with screen after screen of errors hiding the warnings you are interested in.\nOne way to suppress all those warnings is to treat the imported header files as “system” header files. Compilers generally ignore warnings issued from system headers.",
+    "crumbs": [
+      "Home",
+      "External Headers"
+    ]
+  },
+  {
+    "objectID": "pages/systematize.html#introduction",
+    "href": "pages/systematize.html#introduction",
+    "title": "Suppress Warnings from External Headers",
+    "section": "",
+    "text": "This module lets you treat a library’s header files as system headers.\nWe want to compile our code with a maximal set of compiler checks. We also treat all compiler warnings as errors, which forces us to clean our code early in the development cycle. See compiler_init.\nHowever, by default, these rather strict compiler flags also get applied to any imported header files from an external library. When we import a library into our project, we often receive compiler warnings from its header files.\nOf course, a lot of the warnings are not that important and often concern deprecated features that the library uses so it can support ancient compilers and so on. Ideally, all of these get cleaned up by conditional compilation. However, that is probably not immediately practical for a library you do not own. This leaves you with screen after screen of errors hiding the warnings you are interested in.\nOne way to suppress all those warnings is to treat the imported header files as “system” header files. Compilers generally ignore warnings issued from system headers.",
+    "crumbs": [
+      "Home",
+      "External Headers"
+    ]
+  },
+  {
+    "objectID": "pages/systematize.html#usage",
+    "href": "pages/systematize.html#usage",
+    "title": "Suppress Warnings from External Headers",
+    "section": "Usage",
+    "text": "Usage\nSuppose ExternalLib is the external library we import into our project. ExternalLib has some potentially problematic header files in its include directory.\nAssuming the systematize.cmake file is in a top-level cmake directory, and you might invoke it as follows:\nlist(APPEND CMAKE_MODULE_PATH \"${CMAKE_SOURCE_DIR}/cmake\")\ninclude(systematize)\nsystematize(ExternalLib)\nThe systematize function adds the CMake SYSTEM attribute to the ExternalLib, including its header files, and compilers will then stop issuing warnings from that location.",
+    "crumbs": [
+      "Home",
+      "External Headers"
+    ]
+  },
+  {
+    "objectID": "pages/fetch_content.html",
+    "href": "pages/fetch_content.html",
+    "title": "A Wrapper Around FetchContent",
+    "section": "",
+    "text": "fetch_content(...) is a wrapper around the CMake module FetchContent\nThat standard module is a tool to pull a code base or library from a remote repo into a project that will use it.\nFor example, the consumer of a remote library might have some lines in their CMakeLists.txt file like these:\ninclude(FetchContent)\nFetchContent_Declare(ExternalLib URL https:://github.com/.../ExternalLib.git ...)\nFetchContent_MakeAvailable(ExternalLib)\nThose trailing …’s in that first FetchContent_Declare call represent the many options that function can have. Some of those options should be the default. Adding those defaults is the primary purpose of fetch_content.",
+    "crumbs": [
+      "Home",
+      "FetchContent"
+    ]
+  },
+  {
+    "objectID": "pages/fetch_content.html#introduction",
+    "href": "pages/fetch_content.html#introduction",
+    "title": "A Wrapper Around FetchContent",
+    "section": "",
+    "text": "fetch_content(...) is a wrapper around the CMake module FetchContent\nThat standard module is a tool to pull a code base or library from a remote repo into a project that will use it.\nFor example, the consumer of a remote library might have some lines in their CMakeLists.txt file like these:\ninclude(FetchContent)\nFetchContent_Declare(ExternalLib URL https:://github.com/.../ExternalLib.git ...)\nFetchContent_MakeAvailable(ExternalLib)\nThose trailing …’s in that first FetchContent_Declare call represent the many options that function can have. Some of those options should be the default. Adding those defaults is the primary purpose of fetch_content.",
+    "crumbs": [
+      "Home",
+      "FetchContent"
+    ]
+  },
+  {
+    "objectID": "pages/fetch_content.html#usage",
+    "href": "pages/fetch_content.html#usage",
+    "title": "A Wrapper Around FetchContent",
+    "section": "Usage",
+    "text": "Usage\nAssuming the fetch_content.cmake file is located in a top-level cmake directory in the CMakeLists.txt file, you might use the function as follows:\nlist(APPEND CMAKE_MODULE_PATH \"${CMAKE_SOURCE_DIR}/cmake\")\ninclude(fetch_content)\nfetch_content(ExternalLib URL https:://github.com/.../ExternalLib.git ...)\nThis will essentially do the FetchContent_Declare, and FetchContent_MakeAvailable calls above but will also add several recommended options to those calls. In particular, it will tell FetchContent to check to see if the package is already available on the system, avoiding cloning any repo. It will also ensure that any repo clones done will be as shallow as possible to speed things up.\n\n    \n     \n    \n    \nThis module will probably change in the future as FetchContent develops.\n\n\n    \n     \n    \n    \nThe CMake Package Manager CPM is a much fuller featured wrapper around FetchContent.",
+    "crumbs": [
+      "Home",
+      "FetchContent"
     ]
   }
 ]
