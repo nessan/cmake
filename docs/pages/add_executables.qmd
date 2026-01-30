@@ -4,7 +4,20 @@ title: Add Targets for lots of Small Executables
 
 ## Introduction
 
-`add_executables(PATH [PATH ...] [LIBRARIES <lib1> <lib2> ...])` processes source files found in the provided path arguments and generates corresponding executable targets.
+This cmake module provides a function `add_executables` that simplifies the process of adding multiple small executable targets to a CMake project.
+It is particularly useful for projects that include a large number of example programs or test utilities, where each executable is defined in its own source file.
+
+## Usage
+
+The function signature is as follows:
+
+```cmake
+add_executables(PATH [PATH ...]
+                [LIBRARIES <lib1> <lib2> ...]
+                [COMBINED_TARGET [optional_target_name (default: "all_examples")]] )
+```
+
+This processes source files found in the provided path arguments and generates corresponding executable targets.
 
 The path arguments can be directories or individual source files.
 If a directory is provided, the function will process all the source files found in the directory and its subdirectories.
@@ -35,9 +48,28 @@ and your `CMakeLists.txt` file has some lines like
 ```cmake
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 include(add_executables)
-add_executables(examples LIBRARIES nlohmann_json::nlohmann_json)
+add_executables(examples
+                LIBRARIES nlohmann_json::nlohmann_json)
 ```
 then `CMake` will create individual targets for `Bar01`, `Bar02`, `Bar03`, `Foo01`, and `Foo02` and link them to the library `nlohmann_json`.
+
+## Combined Target
+
+The combined target is useful when you want to build all the executables at once from a single command.
+
+If the optional `COMBINED_TARGET <target_name>` argument is provided, the function will also create a target with the name `<target_name>` that depends on all the individual executable targets created from the source files. The `<target_name>` is optional, and if not provided, it defaults to `all_examples`.
+
+NOTE: The combined target is a _utility_, meaning you can use it to build all the executables from one command but it isn't an actual executable itself.
+
+The above example can be modified to create a combined target called `all_tools` like this:
+
+```cmake
+add_executables(examples
+                LIBRARIES nlohmann_json::nlohmann_json
+                COMBINED_TARGET all_tools)
+```
+
+Now, running `cmake --build . --target all_tools` will build all the individual executables found in the `examples` directory.
 
 ## Rationale
 
